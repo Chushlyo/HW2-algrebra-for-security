@@ -27,12 +27,10 @@ public class Field {
             result.add(a);
 
         }
-
         for (int i = 1; i <= exponent - 1; i++) {
             result.equals(addPolynomial(result, currentExp));
             currentExp++;
         }
-
         field = result;
     }
 
@@ -51,26 +49,39 @@ public class Field {
         int[] polynomial = new int[exponent];
         int[] polynomial2 = new int[exponent];
 
-             polynomial[currentExp] =currentExp;
-             currentRes.add(polynomial);
-             polynomial = new int[exponent];
-             for (int n = 1; n < length; n++) {
-                 int[] array = currentRes.get(n);
-                 for (int m = 0; m < array.length; m++) {
-                     if (array[m] != 0) {
-                         polynomial2[currentExp] = currentExp;
-                         polynomial2[m] = array[m];
-                     }
-                 }
+        polynomial[currentExp] = currentExp;
+        currentRes.add(polynomial);
+        polynomial = new int[exponent];
+        for (int n = 1; n < length; n++) {
+            int[] array = currentRes.get(n);
+            for (int m = 0; m < array.length; m++) {
+                if (array[m] != 0) {
+                    polynomial2[currentExp] = currentExp;
+                    polynomial2[m] = array[m];
+                }
+            }
+            currentRes.add(polynomial2);
+            polynomial2 = new int[exponent];
 
-                 currentRes.add(polynomial2);
-                 polynomial2 = new int[exponent];
+        }
+        for (int j = 2; j < prime; j++) {
+            for (int n = 0; n < length; n++) {
+                int[] array = currentRes.get(n);
+                for (int m = 0; m < array.length; m++) {
+                    if (array[m] != 0 && n != 0) {
+                        polynomial2[currentExp] = j;
+                        polynomial2[m] = array[m];
+                    }
+                    if (n == 0) {
+                        polynomial2[currentExp] = j;
+                    }
+                }
+                currentRes.add(polynomial2);
+                polynomial2 = new int[exponent];
 
+            }
+        }
 
-             }
-
-
-        // }
 
         return currentRes;
     }

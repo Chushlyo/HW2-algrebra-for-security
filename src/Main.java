@@ -20,6 +20,7 @@ public class Main {
         field.generate();
         field.print();
 
+
     }
 
     public static void main(String[] args) {
