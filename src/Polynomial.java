@@ -2,10 +2,11 @@
 public class Polynomial {
     private int[] coefficient;
     private int degree;   
-
+    private int p;
     public Polynomial(int a, int x) {
         coefficient = new int[x+1];
         coefficient[x] = a;
+        p = x;
         removeO();
     }
 
@@ -21,6 +22,13 @@ public class Polynomial {
     
     public int degree() {
         return degree;
+    }
+
+    public void print(){
+        for (int i = 0; i<p;i++){
+            System.out.print(coefficient[p-i] + "x^" + (degree-i) +"+");
+        }
+
     }
 
     public Polynomial plus(Polynomial that) {

@@ -34,10 +34,18 @@ public class Main {
             case 1:
                 break;
             case 2:
-                System.out.println("Enter modulus p.");
-                a=scanner.nextInt();
-                x=scanner.nextInt();
-                polynomial=new Polynomial(a,x);
+//                System.out.println("Enter modulus p.");
+//                a=scanner.nextInt();
+//                x=scanner.nextInt();
+//                polynomial p,p1,p2,p3;
+                Polynomial p1 = new Polynomial(3,3);
+                Polynomial p2 = new Polynomial(5,2);
+                Polynomial p3 = new Polynomial(7,1);
+                Polynomial p4 = new Polynomial(1,0);
+                p1.plus(p2.plus(p3.plus(p4)));
+               // p1.
+                p1.print();
+
                 break;
             case 3:
                 System.out.println("Enter a prime number p");
