@@ -42,8 +42,10 @@ public class Main {
                 Polynomial p2 = new Polynomial(5,2);
                 Polynomial p3 = new Polynomial(7,1);
                 Polynomial p4 = new Polynomial(1,0);
-                p1.plus(p2.plus(p3.plus(p4)));
+                p1 = p1.plus(p2.plus(p3.plus(p4)));
+//                p1.plus(p2.plus(p3.plus(p4)));
                // p1.
+                p1.convertPrime(3);
                 p1.print();
 
                 break;
@@ -91,6 +93,20 @@ public class Main {
                 return false;
         }
         return true;
+    }
+
+    public Polynomial readPolynomial(String poly){
+        int kk = poly.charAt(3);
+        int[] readPoly = new int[kk];
+        Polynomial[] p = new Polynomial[kk];
+        for (int i = 0; i < kk; i++){
+            p[i] = new Polynomial (Integer.parseInt(poly.substring(0+5*i)),Integer.parseInt(poly.substring(2+5*i,3+5*i)));
+        }
+        for (int i = 0; i < kk-1; i++){
+            p[kk-i] = p[kk-i].plus(p[kk-i+1]);
+        }
+        return p[0];
+
     }
 
     public static void main(String[] args) {

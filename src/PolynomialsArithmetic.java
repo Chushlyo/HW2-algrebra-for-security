@@ -9,6 +9,14 @@ public class PolynomialsArithmetic {
 
     Polynomial sum() {
         Polynomial result = null;
+        int[] firstPoly= poly1.getCoefficient();
+        int[] secondPoly= poly2.getCoefficient();
+        int length=secondPoly.length;
+         if(firstPoly.length>secondPoly.length){
+             length=firstPoly.length;
+         }
+        int[] coeffResult=new int[length];
+        result.setCoefficient(coeffResult);
         return result;
     }
 
