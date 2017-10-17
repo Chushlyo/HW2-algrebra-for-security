@@ -171,4 +171,11 @@ public class NewPolynomial {
         this.coefficient[k] =this.coefficient[k]-change;
     }
     
+    public NewPolynomial scalar(int s){
+        for(int i = 0; i < degree;i++){
+            this.coefficient[i] = this.coefficient[i]*s;
+        }
+    return this;
+    }
+    
 }

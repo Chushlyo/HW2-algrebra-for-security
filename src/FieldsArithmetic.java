@@ -24,6 +24,11 @@ public class FieldsArithmetic {
         for (int i = 0; i <= poly2.getDegree(); i++) result.subtoThisCoef(i,poly2.getThisCoef(i));
         return result;
     }
+    
+    NewPolynomial scalar(int s){
+        NewPolynomial result = poly1.scalar(s);
+        return result;
+    }
 
     NewPolynomial product() {
         int newDegree = poly1.getDegree() + poly2.getDegree();
@@ -36,12 +41,9 @@ public class FieldsArithmetic {
         return result;
     }
 
-    Polynomial quotient() {
-        NewPolynomial q,r;
-        q = NewPolynomial();
-        r=
-        Polynomial result = null;
-        return result;
+    NewPolynomial quotient() {
+        NewPolynomial result = null;
+        return result;   
     }
 
 
