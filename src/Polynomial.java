@@ -1,6 +1,6 @@
 // for the input we need to plus each part of the polynomial to the biggest degree
 public class Polynomial {
-    private int[] coefficient;
+    public int[] coefficient;
     private int degree;
     private int p;
 
@@ -15,6 +15,9 @@ public class Polynomial {
     }
     public  void setCoefficient(int[] coeff){
         this.coefficient=coeff;
+    }
+    public int getDegree(){
+        return this.degree;
     }
     private void removeO() {
         degree = -1;
