@@ -21,7 +21,7 @@ public class PolynomialsArithmetic {
 //        return result;
 //    }
 
-    NewPolynomial sum() {
+    public NewPolynomial sum(NewPolynomial poly1, NewPolynomial poly2) {
         int newDegree = Math.max(poly1.getDegree() , poly2.getDegree());
         NewPolynomial result = new NewPolynomial("x^" + newDegree);
         for (int i = 0; i <= poly1.getDegree(); i++) result.addtoThisCoef(i,poly1.getThisCoef(i));
