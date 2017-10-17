@@ -7,6 +7,7 @@ public class Main {
     int userChoice;
     //Polynomial structure
     Polynomial polynomial;
+    int a,x;
     //Field structure
     Field field;
     int exponent, prime;
@@ -25,7 +26,7 @@ public class Main {
                 "7. Decide whether two polynomials in mod p are equal to third polynomial mod p.\n" +
                 "   Arithmetic in finite fields:\n" +
                 "8. Addition and multiplication tables of irreducible polynomial.\n" +
-                "9.Produce sum, product and quotient of two irreducible polynomials.\n" +
+                "9.Produce sum, product and quotient of two irreducible polynomials from the same field.\n" +
                 "10. Test irreducibility of polynomial mod p and produce irreducible polynomials of prescribed degree.");
         Scanner scanner = new Scanner(System.in);
         userChoice = scanner.nextInt();
@@ -34,6 +35,9 @@ public class Main {
                 break;
             case 2:
                 System.out.println("Enter modulus p.");
+                a=scanner.nextInt();
+                x=scanner.nextInt();
+                polynomial=new Polynomial(a,x);
                 break;
             case 3:
                 System.out.println("Enter a prime number p");
@@ -60,6 +64,7 @@ public class Main {
             case 8:
                 break;
             case 9:
+                //two polynomials should be from the same field, check needs to be done
                 break;
             case 10:
                 break;
