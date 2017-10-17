@@ -32,6 +32,7 @@ public class Polynomial {
 
     public void print(){
         for (int i = 0; i<degree+1;i++){
+            if(coefficient[degree-i]!=0)
             System.out.print(coefficient[degree-i] + "x^" + (degree-i) +"+");
         }
 
