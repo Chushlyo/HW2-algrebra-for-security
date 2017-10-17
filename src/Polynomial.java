@@ -7,7 +7,7 @@ public class Polynomial {
         coefficient = new int[x+1];
         coefficient[x] = a;
         p = x;
-        removeO();
+//        removeO();
     }
 
     private void removeO() {
@@ -26,7 +26,7 @@ public class Polynomial {
 
     public void print(){
         for (int i = 0; i<p;i++){
-            System.out.print(coefficient[p-i] + "x^" + (degree-i) +"+");
+            System.out.print(coefficient[p-i] + "x^" + (p-i) +"+");
         }
 
     }
