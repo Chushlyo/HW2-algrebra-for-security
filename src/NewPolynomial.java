@@ -62,7 +62,10 @@ public class NewPolynomial {
             coefficient = new int[degree+1];
                 coefficient[degree] = firstCoef;
             
-            poly=poly.substring(4,poly.length());
+            if(poly.length()>3){
+                    poly=poly.substring(4,poly.length());
+                    }
+            else poly=poly.substring(3,poly.length());
 
             while (poly.length()>0){
                 
