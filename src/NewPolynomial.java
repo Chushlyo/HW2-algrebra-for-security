@@ -96,7 +96,10 @@ public class NewPolynomial {
                 
                 if(poly.substring(1,2).equals("^")){
                     coefficient[Integer.valueOf(poly.substring(2,3))] = firstCoef;
+                    if(poly.length()>3){
                     poly=poly.substring(4,poly.length());
+                    }
+                    else poly=poly.substring(3,poly.length());
 
                 }else{
                     coefficient[1] = firstCoef;
