@@ -11,6 +11,7 @@ public class Main {
     //Field structure
     Field field;
     int exponent, prime;
+    String poly,poly1;
 
 
     void computation() {
@@ -22,7 +23,7 @@ public class Main {
                 "   Arithmetic with polynomials:\n" +
                 "4. Two polynomials with coefficients modulo prime, produce sum, scalar multiple,difference and product.\n" +
                 "5. Quotient and remainder of two polynomials(long division).\n" +
-                "6.Extented Euclidean algorithm for two polynomials with coefficients mod p.\n" +
+                "6. Extented Euclidean algorithm for two polynomials with coefficients mod p.\n" +
                 "7. Decide whether two polynomials in mod p are equal to third polynomial mod p.\n" +
                 "   Arithmetic in finite fields:\n" +
                 "8. Addition and multiplication tables of irreducible polynomial.\n" +
@@ -32,25 +33,32 @@ public class Main {
         userChoice = scanner.nextInt();
         switch (userChoice) {
             case 1:
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
                 break;
             case 2:
-//                System.out.println("Enter modulus p.");
-//                a=scanner.nextInt();
-//                x=scanner.nextInt();
-//                polynomial p,p1,p2,p3;
-                Polynomial p1 = new Polynomial(3,3);
-                Polynomial p2 = new Polynomial(5,2);
-                Polynomial p3 = new Polynomial(7,1);
-                Polynomial p4 = new Polynomial(1,0);
-                p1 = p1.plus(p2.plus(p3.plus(p4)));
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+//                Polynomial p1 = new Polynomial(3,3);
+//                Polynomial p2 = new Polynomial(5,2);
+//                Polynomial p3 = new Polynomial(7,1);
+//                Polynomial p4 = new Polynomial(1,0);
+//                p1 = p1.plus(p2.plus(p3.plus(p4)));
 //                Polynomial c = readPolynomial("23x+43");
-                NewPolynomial c = new NewPolynomial("84x^7+23x^2+51x+7");
+                System.out.println("Enter a polynomial.");
+                poly=scanner.next();
+                NewPolynomial c = new NewPolynomial(poly);
                 c.print();
-               // p1.
-                c.convertPrime(7);
+                c.convertPrime(prime);
                 c.print();
-//                c.print();
-
                 break;
             case 3:
                 System.out.println("Enter a prime number p");
@@ -67,6 +75,37 @@ public class Main {
                 System.out.println("\n The field consists of " + field.field.size() + " elements.");
                 break;
             case 4:
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter first polynomial.");
+                poly=scanner.next().toLowerCase();
+                NewPolynomial p = new NewPolynomial(poly);
+                p.print();
+                p.convertPrime(prime);
+                p.print();
+                System.out.println("Enter second polynomial.");
+                poly1=scanner.next().toLowerCase();
+                NewPolynomial p1 = new NewPolynomial(poly1);
+                p1.print();
+                p1.convertPrime(prime);
+                p1.print();
+                System.out.println("Enter a scalar");
+                int scalar=scanner.nextInt();
+                PolynomialsArithmetic arithmetic=new PolynomialsArithmetic(p,p1);
+                System.out.println("The sum of both polynomials is:");
+                arithmetic.sum().print();
+                System.out.println("The difference of both polynomials is:");
+                arithmetic.difference().print();
+                System.out.println("The scalar multiple of first polynomial is ");
+                arithmetic.scalar(p,scalar).print();
+                System.out.println("The scalar multiple of second polynomial is ");
+                arithmetic.scalar(p1,scalar).print();
+                System.out.println("The product is");
+                arithmetic.product().print();
                 break;
             case 5:
                 break;

@@ -21,7 +21,7 @@ public class PolynomialsArithmetic {
 //        return result;
 //    }
 
-    public NewPolynomial sum(NewPolynomial poly1, NewPolynomial poly2) {
+    public NewPolynomial sum() {
         int newDegree = Math.max(poly1.getDegree() , poly2.getDegree());
         NewPolynomial result = new NewPolynomial("x^" + newDegree);
         for (int i = 0; i <= poly1.getDegree(); i++) result.addtoThisCoef(i,poly1.getThisCoef(i));
@@ -29,7 +29,7 @@ public class PolynomialsArithmetic {
         return result;
     }
     
-    public NewPolynomial difference(NewPolynomial poly1, NewPolynomial poly2) {
+    public NewPolynomial difference() {
         int newDegree = Math.max(poly1.getDegree() , poly2.getDegree());
         NewPolynomial result = new NewPolynomial("x^" + newDegree);
         for (int i = 0; i <= poly1.getDegree(); i++) result.subtoThisCoef(i,poly1.getThisCoef(i));
@@ -42,7 +42,7 @@ public class PolynomialsArithmetic {
         return result;
     }
 
-    public NewPolynomial product(NewPolynomial poly1, NewPolynomial poly2) {
+    public NewPolynomial product() {
         int newDegree = poly1.getDegree() + poly2.getDegree();
         NewPolynomial result = new NewPolynomial("x^" + newDegree);
         
