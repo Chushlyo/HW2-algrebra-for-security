@@ -14,7 +14,11 @@ public class NewPolynomial {
 
     public NewPolynomial(String poly) {
 
+        this.coefficient = extractCoef(poly);
 
+    }
+
+    public int[] extractCoef(String poly) {
         int i = 1;
         int k = 0;
 
@@ -115,6 +119,7 @@ public class NewPolynomial {
                     coefficient[1] = firstCoef;
                     coefficient[0] = Integer.valueOf(poly.substring(2, poly.length()));
                 }
+        return coefficient;
     }
 
     public void print() {
@@ -127,7 +132,7 @@ public class NewPolynomial {
             }
         }
 
-        if (coefficient[1] != 0) {
+        if (degree > 0 && coefficient[1] != 0) {
             printer = (printer + coefficient[1] + "x+");
             if (coefficient[0] != 0) {
                 printer = (printer + coefficient[0] + "+");
@@ -138,7 +143,9 @@ public class NewPolynomial {
             }
         }
 
-        printer = printer.substring(0, printer.length() - 1);
+        if (degree > 0) {
+            printer = printer.substring(0, printer.length() - 1);
+        }
         System.out.println(printer);
     }
 
@@ -153,11 +160,11 @@ public class NewPolynomial {
         return this.degree;
     }
 
-    public NewPolynomial changeDegree(int newDegree,NewPolynomial old) {
-        NewPolynomial newpoly=new NewPolynomial("x^" + newDegree);
+    public NewPolynomial changeDegree(int newDegree, NewPolynomial old) {
+        NewPolynomial newpoly = new NewPolynomial("x^" + newDegree);
 //        newpoly.degree=newDegree;
-        for(int i=0;i<=newDegree;i++){
-            newpoly.coefficient[i]=old.coefficient[i];
+        for (int i = 0; i <= newDegree; i++) {
+            newpoly.coefficient[i] = old.coefficient[i];
         }
 //        //in order to remove adding the first degree at the start
 //        newpoly.subtoThisCoef(newpoly.getDegree(), 1);

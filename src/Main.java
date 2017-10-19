@@ -8,7 +8,6 @@ public class Main {
     int userChoice;
     //Polynomial structure
     NewPolynomial p,p1,p3,p4;
-    int a, x;
     //Field structure
     Field field;
     int exponent, prime;
@@ -16,6 +15,8 @@ public class Main {
     String poly, poly1;
     //Long division
     LongDivision longDivision;
+    //Extended Euclidean
+    ExtendedEuclidean extendedEuclidean;
 
 
     void computation() {
@@ -153,6 +154,26 @@ public class Main {
                 longDivision.divide(p,p1);
                 break;
             case 6:
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter first polynomial.");
+                poly = scanner.next().toLowerCase();
+                p = new NewPolynomial(poly);
+                p.print();
+                p.convertPrime(prime);
+                p.print();
+                System.out.println("Enter second polynomial.");
+                poly1 = scanner.next().toLowerCase();
+                p1 = new NewPolynomial(poly1);
+                p1.print();
+                p1.convertPrime(prime);
+                p1.print();
+                extendedEuclidean=new ExtendedEuclidean();
+                extendedEuclidean.compute(p,p1);
                 break;
             case 7:
                 break;

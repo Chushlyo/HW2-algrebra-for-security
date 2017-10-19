@@ -1,6 +1,8 @@
 
 public class LongDivision {
     PolynomialsArithmetic pa=new PolynomialsArithmetic();
+    NewPolynomial quot;
+    NewPolynomial rem;
 
     void divide(NewPolynomial n,NewPolynomial d){
         NewPolynomial q = new NewPolynomial("0");
@@ -20,8 +22,10 @@ public class LongDivision {
 
         }
         System.out.println("The quotient is:");
+        this.quot=q;
         q.print();
         System.out.println("The remainder is:");
+        this.rem=r;
         r.print();
     }
 }
