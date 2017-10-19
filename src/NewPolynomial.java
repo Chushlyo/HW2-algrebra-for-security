@@ -94,7 +94,7 @@ public class NewPolynomial {
                     while (poly.length()>0){
 
 
-                        System.out.println(poly);
+//                        System.out.println(poly);
                         if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("+")){
                             firstCoef = 1;
                             poly = poly.substring(1,poly.length());
@@ -133,7 +133,7 @@ public class NewPolynomial {
 
                                 if(poly.substring(1,2).equals("^")){
                                     coefficient[Integer.valueOf(poly.substring(2,3))] = firstCoef;
-                                    System.out.println(poly+"wtf");
+//                                    System.out.println(poly+"wtf");
                                     if(poly.length()>3 ){
                                         poly=poly.substring(3,poly.length());
                                     }
