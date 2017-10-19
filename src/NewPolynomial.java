@@ -22,6 +22,7 @@ public class NewPolynomial {
 
         //If the first thing you read is x, then the coef is 1
         if (poly.substring(0, 1).equals("x")) {
+            degree = 1;
             firstCoef = 1;
         } else {
 
@@ -111,7 +112,6 @@ public class NewPolynomial {
                 } else {
 
                     coefficient = new int[2];
-
                     coefficient[1] = firstCoef;
                     coefficient[0] = Integer.valueOf(poly.substring(2, poly.length()));
                 }
@@ -151,6 +151,17 @@ public class NewPolynomial {
 
     public int getDegree() {
         return this.degree;
+    }
+
+    public NewPolynomial changeDegree(int newDegree,NewPolynomial old) {
+        NewPolynomial newpoly=new NewPolynomial("x^" + newDegree);
+//        newpoly.degree=newDegree;
+        for(int i=0;i<=newDegree;i++){
+            newpoly.coefficient[i]=old.coefficient[i];
+        }
+//        //in order to remove adding the first degree at the start
+//        newpoly.subtoThisCoef(newpoly.getDegree(), 1);
+        return newpoly;
     }
 
     public int[] getCoef() {
