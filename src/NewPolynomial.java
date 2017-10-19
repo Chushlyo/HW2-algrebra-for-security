@@ -19,105 +19,136 @@ public class NewPolynomial {
     }
 
     public int[] extractCoef(String poly) {
+
+        boolean minus= (true);
         int i = 1;
         int k = 0;
 
         int firstCoef;
 
+        if(poly.substring(0,1).equals("-")){
+            poly.substring(1,poly.length());
+            {
+                minus = true;
+
+            }
+        }
+
         //If the first thing you read is x, then the coef is 1
-        if (poly.substring(0, 1).equals("x")) {
-            degree = 1;
+        if(poly.substring(0,1).equals("x")){
             firstCoef = 1;
-        } else {
+            degree = 1;
+
+        }else if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("-")){
+            firstCoef= -1;
+            degree = 1;
+
+        }else{
 
 
             //if it is not x find out what the coef is
-            while (!poly.substring(k, k + 1).equals("x")) {
+            while (!poly.substring(k,k+1).equals("x")){
                 k++;
                 //if it is of ^0 then you need this
-                if (k >= poly.length()) break;
+                if(k>=poly.length()) break;
             }
-            firstCoef = Integer.valueOf(poly.substring(0, k));
+            firstCoef=Integer.valueOf(poly.substring(0,k));
 
             //the string without the coef
-            poly = poly.substring(k, poly.length());
+            poly = poly.substring(k,poly.length());
         }
 
 
-        if (poly.length() == 0) {
-            coefficient = new int[1];
+        if(poly.length()==0){
+            coefficient  = new int[1];
             coefficient[0] = firstCoef;
             degree = 0;
-        } else
+        }else
             //if of ^0 return
 
-            if (poly.length() == 1) {
-                coefficient = new int[2];
+            if(poly.length()==1){
+                coefficient  = new int[2];
                 coefficient[1] = firstCoef;
                 degree = 1;
-            } else
+            }else
                 //if^1 without^0 return here
 
                 //if it is of bigger degree than 1 Go here
-                if (poly.substring(1, 2).equals("^")) {
+                if(poly.substring(1,2).equals("^")){
 
-                    degree = Integer.valueOf(poly.substring(2, 3));
-                    coefficient = new int[degree + 1];
+                    degree = Integer.valueOf(poly.substring(2,3));
+                    coefficient = new int[degree+1];
                     coefficient[degree] = firstCoef;
 
-                    if (poly.length() > 3) {
-                        poly = poly.substring(4, poly.length());
-                    } else poly = poly.substring(3, poly.length());
+                    if(poly.length()>3){
+                        poly=poly.substring(3,poly.length());
+                    }
+                    else poly=poly.substring(2,poly.length());
 
-                    while (poly.length() > 0) {
+                    while (poly.length()>0){
 
-                        if (poly.substring(0, 1).equals("x")) {
+
+                        System.out.println(poly);
+                        if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("+")){
                             firstCoef = 1;
-                        } else {
+                            poly = poly.substring(1,poly.length());
+
+                        }
+                        else if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("-")){
+                            firstCoef= -1;
+                            poly = poly.substring(1,poly.length());
+
+                        }else{
                             k = 0;
 
-                            while (!poly.substring(k, k + 1).equals("x")) {
+                            while (!poly.substring(k,k+1).equals("x")){
                                 k++;
-                                if (k >= poly.length()) break;
+                                if(k>=poly.length()) break;
                             }
 
-                            firstCoef = Integer.valueOf(poly.substring(0, k));
+                            firstCoef=Integer.valueOf(poly.substring(0,k));
 
 
-                            poly = poly.substring(k, poly.length());
+                            poly = poly.substring(k,poly.length());
                         }
 
-                        if (poly.length() == 0) {
+                        if(poly.length()==0) {
                             coefficient[0] = firstCoef;
                             break;
-                        } else
+                        }else
                             //if of ^0 return
 
-                            if (poly.length() == 1) {
+                            if(poly.length()==1 || (poly.length()==2 && poly.substring(0,1).equals("-"))){
                                 coefficient[1] = firstCoef;
                                 break;
-                            } else
+                            }
+                            else
                                 //if^1 without^0 return here
 
-                                if (poly.substring(1, 2).equals("^")) {
-                                    coefficient[Integer.valueOf(poly.substring(2, 3))] = firstCoef;
-                                    if (poly.length() > 3) {
-                                        poly = poly.substring(4, poly.length());
-                                    } else poly = poly.substring(3, poly.length());
+                                if(poly.substring(1,2).equals("^")){
+                                    coefficient[Integer.valueOf(poly.substring(2,3))] = firstCoef;
+                                    System.out.println(poly+"wtf");
+                                    if(poly.length()>3 ){
+                                        poly=poly.substring(3,poly.length());
+                                    }
 
-                                } else {
+                                    else poly=poly.substring(1,poly.length());
+
+                                }else{
                                     coefficient[1] = firstCoef;
-                                    coefficient[0] = Integer.valueOf(poly.substring(2, poly.length()));
+                                    coefficient[0] = Integer.valueOf(poly.substring(1,poly.length()));
                                     break;
                                 }
 
                         i++;
+
                     }
-                } else {
+                }else{
 
                     coefficient = new int[2];
+
                     coefficient[1] = firstCoef;
-                    coefficient[0] = Integer.valueOf(poly.substring(2, poly.length()));
+                    coefficient[0] = Integer.valueOf(poly.substring(2,poly.length()));
                 }
         return coefficient;
     }

@@ -8,7 +8,7 @@ public class LongDivision {
         NewPolynomial q = new NewPolynomial("0");
         NewPolynomial r= n;
 
-        while (r.getDegree()>d.getDegree() && r.getDegree()!=0){
+        while (r.getDegree()>=d.getDegree() && r.getDegree()!=0){
             System.out.println("resu?");
             //divide leading terms
             int lcr_lcb = r.getThisCoef(r.getDegree())/ d.getThisCoef(d.getDegree());

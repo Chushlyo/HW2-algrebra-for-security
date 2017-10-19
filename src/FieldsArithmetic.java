@@ -1,6 +1,7 @@
 public class FieldsArithmetic {
     NewPolynomial poly1;
     NewPolynomial poly2;
+    PolynomialsArithmetic polynomialsArithmetic=new PolynomialsArithmetic();
 
     //two polynomials should be from the same field, check needs to be done
     public FieldsArithmetic(NewPolynomial p1, NewPolynomial p2) {
@@ -10,38 +11,19 @@ public class FieldsArithmetic {
     
     
     NewPolynomial sum() {
-
-        int newDegree = Math.max(poly1.getDegree() , poly2.getDegree());
-        NewPolynomial result = new NewPolynomial("x^" + newDegree);
-        for (int i = 0; i <= poly1.getDegree(); i++) result.addtoThisCoef(i,poly1.getThisCoef(i));
-        for (int i = 0; i <= poly2.getDegree(); i++) result.addtoThisCoef(i,poly2.getThisCoef(i));
-        //in order to remove adding the first degree at the start
-        result.subtoThisCoef(result.getDegree(),1);
-        return result;
+        return polynomialsArithmetic.sum(poly1,poly2);
     }
     
     NewPolynomial difference() {
-        int newDegree = Math.max(poly1.getDegree() , poly2.getDegree());
-        NewPolynomial result = new NewPolynomial("x^" + newDegree);
-        for (int i = 0; i <= poly1.getDegree(); i++) result.subtoThisCoef(i,poly1.getThisCoef(i));
-        for (int i = 0; i <= poly2.getDegree(); i++) result.subtoThisCoef(i,poly2.getThisCoef(i));
-        return result;
+        return polynomialsArithmetic.difference(poly1,poly2);
     }
 
     NewPolynomial scalar(int s){
-        NewPolynomial result = poly1.scalar(s);
-        return result;
+        return polynomialsArithmetic.scalar(poly1,s);
     }
 
     NewPolynomial product() {
-        int newDegree = poly1.getDegree() + poly2.getDegree();
-        NewPolynomial result = new NewPolynomial("x^" + newDegree);
-        
-        for (int i = 0; i <= poly1.getDegree(); i++)
-            for (int j = 0; j <= poly2.getDegree(); j++)
-                result.changeThisCoef(i+j,poly1.getThisCoef(i) * poly2.getThisCoef(j));
-    
-        return result;
+        return polynomialsArithmetic.product(poly1,poly2);
     }
 
     NewPolynomial quotient() {
