@@ -15,7 +15,7 @@ public class ExtendedEuclidean {
             a = b;
             b=longDivision.rem;
             System.out.println("b is ");
-            b.print();
+//            b.print();
             xPr=polynomialsArithmetic.difference(x1,polynomialsArithmetic.product(quot,x2));
           // if(xPr.getDegree()>0) {
           NewPolynomial current=xPr.changeDegree(xPr.getDegree()-1,xPr);
@@ -33,7 +33,7 @@ public class ExtendedEuclidean {
         System.out.println("X is");
         x1.print();
         System.out.println("Y is");
-        y1.print();
+            y1.print();
 
 
     }
