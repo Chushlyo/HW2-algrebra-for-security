@@ -33,17 +33,23 @@ public class NewPolynomial {
 
             }
         }
-
+        if(poly.length()==1&& !poly.substring(0,1).equals("x")){
+            coefficient  = new int[1];
+            coefficient[0] = Integer.valueOf(poly.substring(0,1));
+            degree = 0;
+            return coefficient;
+        }
         //If the first thing you read is x, then the coef is 1
         if(poly.substring(0,1).equals("x")){
             firstCoef = 1;
             degree = 1;
 
-        }else if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("-")){
+        }else
+            if(poly.substring(1,2).equals("x") && poly.substring(0,1).equals("-")){
             firstCoef= -1;
             degree = 1;
-
-        }else{
+            }
+        else{
 
 
             //if it is not x find out what the coef is
