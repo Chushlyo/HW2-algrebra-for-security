@@ -7,11 +7,11 @@ public class Main {
     int userChoice;
     //Polynomial structure
     Polynomial polynomial;
-    int a,x;
+    int a, x;
     //Field structure
     Field field;
     int exponent, prime;
-    String poly,poly1;
+    String poly, poly1;
 
 
     void computation() {
@@ -54,7 +54,7 @@ public class Main {
 //                p1 = p1.plus(p2.plus(p3.plus(p4)));
 //                Polynomial c = readPolynomial("23x+43");
                 System.out.println("Enter a polynomial.");
-                poly=scanner.next();
+                poly = scanner.next();
                 NewPolynomial c = new NewPolynomial(poly);
                 c.print();
                 c.convertPrime(prime);
@@ -82,30 +82,36 @@ public class Main {
                     System.exit(0);
                 }
                 System.out.println("Enter first polynomial.");
-                poly=scanner.next().toLowerCase();
+                poly = scanner.next().toLowerCase();
                 NewPolynomial p = new NewPolynomial(poly);
                 p.print();
                 p.convertPrime(prime);
                 p.print();
                 System.out.println("Enter second polynomial.");
-                poly1=scanner.next().toLowerCase();
+                poly1 = scanner.next().toLowerCase();
                 NewPolynomial p1 = new NewPolynomial(poly1);
                 p1.print();
                 p1.convertPrime(prime);
                 p1.print();
                 System.out.println("Enter a scalar");
-                int scalar=scanner.nextInt();
-                PolynomialsArithmetic arithmetic=new PolynomialsArithmetic(p,p1);
+                int scalar = scanner.nextInt();
+                PolynomialsArithmetic arithmetic = new PolynomialsArithmetic();
                 System.out.println("The sum of both polynomials is:");
-                arithmetic.sum().print();
-                System.out.println("The difference of both polynomials is:");
-                arithmetic.difference().print();
+                arithmetic.sum(p, p1).print();
+                System.out.println("Subtracting the second polynomial from the first one gives:");
+                arithmetic.difference(p, p1).print();
+                System.out.println("Subtracting the first polynomial from the second one gives:");
+                arithmetic.difference(p1, p).print();
                 System.out.println("The scalar multiple of first polynomial is ");
-                arithmetic.scalar(p,scalar).print();
+                arithmetic.scalar(p, scalar).print();
                 System.out.println("The scalar multiple of second polynomial is ");
-                arithmetic.scalar(p1,scalar).print();
+                arithmetic.scalar(p1, scalar).print();
+                NewPolynomial p3 = new NewPolynomial(poly);
+                p3.convertPrime(prime);
+                NewPolynomial p4 = new NewPolynomial(poly1);
+                p4.convertPrime(prime);
                 System.out.println("The product is");
-                arithmetic.product().print();
+                arithmetic.product(p3, p4).print();
                 break;
             case 5:
                 break;
@@ -137,111 +143,108 @@ public class Main {
         return true;
     }
 
-    public Polynomial readPolynomial(String poly){
-        
+    public Polynomial readPolynomial(String poly) {
+
         int i = 1;
         Polynomial[] p = new Polynomial[500];
-        
+
         int firstCoef;
-        
+
         //If the first thing you read is x, then the coef is 1
-        if(poly.substring(0,1).equals("x")){
+        if (poly.substring(0, 1).equals("x")) {
             firstCoef = 1;
         }
         int k = 0;
-        
+
         //if it is not x find out what the coef is
-        while (!poly.substring(k,k+1).equals("x")){
+        while (!poly.substring(k, k + 1).equals("x")) {
             k++;
             //if it is of ^0 then you need this
-            if(k>=poly.length()) break;
+            if (k >= poly.length()) break;
         }
-        firstCoef=Integer.valueOf(poly.substring(0,k));
-        
+        firstCoef = Integer.valueOf(poly.substring(0, k));
+
         //the string without the coef
-        poly = poly.substring(k,poly.length());
-        
-        
-    
-        if(poly.length()==0) return new Polynomial(firstCoef,0);
+        poly = poly.substring(k, poly.length());
+
+
+        if (poly.length() == 0) return new Polynomial(firstCoef, 0);
         //if of ^0 return 
-        
-        if(poly.length()==1) return new Polynomial (firstCoef,1);
+
+        if (poly.length() == 1) return new Polynomial(firstCoef, 1);
         //if^1 without^0 return here
-        
+
         //if it is of bigger degree than 1 Go here
-        if(poly.substring(1,2).equals("^")){
-            
+        if (poly.substring(1, 2).equals("^")) {
+
             //the first polynomial
-            p[0] = new Polynomial(firstCoef,Integer.valueOf(poly.substring(2,3)));
-            
-            poly=poly.substring(3,poly.length());
-            
-            while (poly.length()>0){
-                
-                if(poly.substring(0,1).equals("x")){
+            p[0] = new Polynomial(firstCoef, Integer.valueOf(poly.substring(2, 3)));
+
+            poly = poly.substring(3, poly.length());
+
+            while (poly.length() > 0) {
+
+                if (poly.substring(0, 1).equals("x")) {
                     firstCoef = 1;
                 }
                 k = 0;
-        
-                while (!poly.substring(k,k+1).equals("x")){
+
+                while (!poly.substring(k, k + 1).equals("x")) {
                     k++;
-                    if(k>=poly.length()) break;
+                    if (k >= poly.length()) break;
                 }
 
-                firstCoef=Integer.valueOf(poly.substring(0,k));
+                firstCoef = Integer.valueOf(poly.substring(0, k));
 
 
-                poly = poly.substring(k,poly.length());
+                poly = poly.substring(k, poly.length());
 
 
-                if(poly.length()==0) {
-                    p[i] = new Polynomial(firstCoef,0);
+                if (poly.length() == 0) {
+                    p[i] = new Polynomial(firstCoef, 0);
                     p[i].print();
                     break;
                 }
-            //if of ^0 return 
+                //if of ^0 return
 
-                if(poly.length()==1){
-                    p[i] = new Polynomial (firstCoef,1);
+                if (poly.length() == 1) {
+                    p[i] = new Polynomial(firstCoef, 1);
                     p[i].print();
                     break;
                 }
-            //if^1 without^0 return here
-                
-                if(poly.substring(1,2).equals("^")){
-                    p[i] = new Polynomial(firstCoef,Integer.valueOf(poly.substring(2,3)));
-                    poly=poly.substring(3,poly.length());
-                }else{
-                    p[i] = new Polynomial(firstCoef,1);
+                //if^1 without^0 return here
+
+                if (poly.substring(1, 2).equals("^")) {
+                    p[i] = new Polynomial(firstCoef, Integer.valueOf(poly.substring(2, 3)));
+                    poly = poly.substring(3, poly.length());
+                } else {
+                    p[i] = new Polynomial(firstCoef, 1);
 //                    p[i].print();
-                    p[i+1] = new Polynomial(Integer.valueOf(poly.substring(2,poly.length())),0);
+                    p[i + 1] = new Polynomial(Integer.valueOf(poly.substring(2, poly.length())), 0);
 //                    p[i+1].print();
                     break;
                 }
-           
-            i++;
-        }           
-    }
-        
-        else{
-            p[0] = new Polynomial(firstCoef,1);
-                p[0].print();
-                p[1] = new Polynomial(Integer.valueOf(poly.substring(2,poly.length())),0);
-                p[1].print();
-                
+
+                i++;
+            }
+        } else {
+            p[0] = new Polynomial(firstCoef, 1);
+            p[0].print();
+            p[1] = new Polynomial(Integer.valueOf(poly.substring(2, poly.length())), 0);
+            p[1].print();
+
         }
-        
+
 
 //        p[0] = p[0].plus(p[1]);
         p[0] = p[0].plus(p[1]);
         p[0].print();
-        
-        
+
+
 //        p[i-1].print();
 //        System.out.println("here+" + poly);
-        
-        
+
+
 //        
 //        if(!poly.substring(0,1).equals("x")){
 //            

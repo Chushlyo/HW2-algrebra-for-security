@@ -15,6 +15,8 @@ public class FieldsArithmetic {
         NewPolynomial result = new NewPolynomial("x^" + newDegree);
         for (int i = 0; i <= poly1.getDegree(); i++) result.addtoThisCoef(i,poly1.getThisCoef(i));
         for (int i = 0; i <= poly2.getDegree(); i++) result.addtoThisCoef(i,poly2.getThisCoef(i));
+        //in order to remove adding the first degree at the start
+        result.subtoThisCoef(result.getDegree(),1);
         return result;
     }
     
@@ -25,7 +27,7 @@ public class FieldsArithmetic {
         for (int i = 0; i <= poly2.getDegree(); i++) result.subtoThisCoef(i,poly2.getThisCoef(i));
         return result;
     }
-    
+
     NewPolynomial scalar(int s){
         NewPolynomial result = poly1.scalar(s);
         return result;
