@@ -119,7 +119,7 @@ public class Main {
                 res4.convertPrime(prime);
                 res4.print();
                 System.out.println("The scalar multiple of second polynomial is ");
-                NewPolynomial res5= arithmetic.scalar(p, scalar);
+                NewPolynomial res5= arithmetic.scalar(p1, scalar);
                 res5.convertPrime(prime);
                 res5.print();
                 p3 = new NewPolynomial(poly);

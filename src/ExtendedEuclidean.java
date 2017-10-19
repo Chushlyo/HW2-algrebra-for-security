@@ -27,7 +27,7 @@ public class ExtendedEuclidean {
             x2=xPr;
             y2=yPr;
         }
-        gcd=a;
+        gcd=quot;// a?
         System.out.println("GCD is ");
         gcd.print();
         System.out.println("X is");
