@@ -89,7 +89,7 @@ public class NewPolynomial {
                     if(poly.length()>3){
                         poly=poly.substring(3,poly.length());
                     }
-                    else poly=poly.substring(2,poly.length());
+                    else poly=poly.substring(3,poly.length());
 
                     while (poly.length()>0){
 
