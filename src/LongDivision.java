@@ -23,9 +23,9 @@ public class LongDivision {
         }
         System.out.println("The quotient is:");
         this.quot=q;
-//        q.print();
+        q.print();
         System.out.println("The remainder is:");
         this.rem=r;
-//        r.print();
+        r.print();
     }
 }
