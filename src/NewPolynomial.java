@@ -82,15 +82,24 @@ public class NewPolynomial {
                 //if it is of bigger degree than 1 Go here
                 if(poly.substring(1,2).equals("^")){
                     
-                    degree = Integer.valueOf(poly.substring(2,3));
+                    while (!poly.substring(2+k,2+k+1).equals("-") &&!poly.substring(2+k,2+k+1).equals("+")){
+                        k++;
+                        //if it is of ^0 then you need this
+                        if(2+k>=poly.length()) break;
+                    }
+                    degree=Integer.valueOf(poly.substring(2,2+k));
+
+            //the string without the coef
+            poly = poly.substring(2+k,poly.length());
+                    
+//                    degree = Integer.valueOf(poly.substring(2,3));
                     coefficient = new int[degree+1];
                     coefficient[degree] = firstCoef;
 
-                    if(poly.length()>3){
-                        poly=poly.substring(3,poly.length());
-                    }
-                    else poly=poly.substring(3,poly.length());
-
+//                    if(poly.length()>3){
+//                        poly=poly.substring(3,poly.length());
+//                    }
+//                    else poly=poly.substring(3,poly.length());
                     while (poly.length()>0){
 
 
@@ -130,12 +139,22 @@ public class NewPolynomial {
                             }
                             else
                                 //if^1 without^0 return here
-
+                                
                                 if(poly.substring(1,2).equals("^")){
-                                    coefficient[Integer.valueOf(poly.substring(2,3))] = firstCoef;
+                                    k=0;
+                                    while (!poly.substring(2+k,2+k+1).equals("-") &&!poly.substring(2+k,2+k+1).equals("+")){
+                                        k++;
+                                        //if it is of ^0 then you need this
+                                        if(2+k>=poly.length()) break;
+                                    }
+                                    
+
+                            //the string without the coef
+                                    
+                                    coefficient[Integer.valueOf(poly.substring(2,2+k))] = firstCoef;
 //                                    System.out.println(poly+"wtf");
                                     if(poly.length()>3 ){
-                                        poly=poly.substring(3,poly.length());
+                                        poly = poly.substring(2+k,poly.length());
                                     }
 
                                     else poly=poly.substring(1,poly.length());
