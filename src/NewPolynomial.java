@@ -81,7 +81,7 @@ public class NewPolynomial {
 
                 //if it is of bigger degree than 1 Go here
                 if(poly.substring(1,2).equals("^")){
-                    
+                    k=0;
                     while (!poly.substring(2+k,2+k+1).equals("-") &&!poly.substring(2+k,2+k+1).equals("+")){
                         k++;
                         //if it is of ^0 then you need this
