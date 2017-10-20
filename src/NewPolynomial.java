@@ -89,7 +89,7 @@ public class NewPolynomial {
                     }
                     degree=Integer.valueOf(poly.substring(2,2+k));
 
-            //the string without the coef
+            //the string without the degree
             poly = poly.substring(2+k,poly.length());
                     
 //                    degree = Integer.valueOf(poly.substring(2,3));
@@ -153,7 +153,7 @@ public class NewPolynomial {
                                     
                                     coefficient[Integer.valueOf(poly.substring(2,2+k))] = firstCoef;
 //                                    System.out.println(poly+"wtf");
-                                    if(poly.length()>3 ){
+                                    if(poly.length()>=3 ){
                                         poly = poly.substring(2+k,poly.length());
                                     }
 
