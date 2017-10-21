@@ -52,12 +52,6 @@ public class Main {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
-//                Polynomial p1 = new Polynomial(3,3);
-//                Polynomial p2 = new Polynomial(5,2);
-//                Polynomial p3 = new Polynomial(7,1);
-//                Polynomial p4 = new Polynomial(1,0);
-//                p1 = p1.plus(p2.plus(p3.plus(p4)));
-//                Polynomial c = readPolynomial("23x+43");
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
                 p = new NewPolynomial(poly);
@@ -150,7 +144,7 @@ public class Main {
                 p1.print();
                 p1.convertPrime(prime);
                 p1.print();
-                longDivision=new LongDivision();
+                longDivision=new LongDivision(prime);
                 longDivision.divide(p,p1);
                 break;
             case 6:
@@ -176,13 +170,58 @@ public class Main {
                 extendedEuclidean.compute(p,p1);
                 break;
             case 7:
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter the exponent n.");
+                exponent = scanner.nextInt();
+                field = new Field(prime, exponent);
+                field.generate();
+                field.getPoly();
+//                System.out.println("\n The field consists of " + field.field.size() + " elements.");
                 break;
             case 8:
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter the exponent n.");
+                exponent = scanner.nextInt();
+                NewField sfield = new NewField(prime, exponent);
+//                sfield.generate();
                 break;
             case 9:
-                //two polynomials should be from the same field, check needs to be done
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter the exponent n.");
+                exponent = scanner.nextInt();
+                NewField pfield = new NewField(prime, exponent);
+                
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter a polynomial.");
+                poly = scanner.next();
+                p = new NewPolynomial(poly);
+                p.convertPrime(prime);
+                FieldTable table = new FieldTable(pfield,p);
                 break;
+                //two polynomials should be from the same field, check needs to be done
+                
             case 10:
+                System.out.println(-1%2);
                 break;
 
         }

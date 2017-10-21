@@ -140,5 +140,67 @@ public class Field {
 
         }
     }
+    
+    /*
+    Returns all Elements in field as polyonomials
+    */
+    public void getPoly(){
+        int flag =0;
+//        ArrayList<NewPolynomial> poly = new ArrayList<NewPolynomial>();
+        String currentPoly="";
+        for (int[] current : field) {
+//            field.print();
+            currentPoly="";
+            for (int i = 0; i < current.length; i++) {
+                for (int p = 0; p < current.length; p++){
+                    if(current[p]!=0) flag=1;
+                    
+                }
+                if (flag == 0){
+                    currentPoly=("0");
+                    break;
+                }
+//                System.out.println("nex" + currentPoly);
+                if(i==0){
+                    if(current[i]==0)
+                        currentPoly=("+0");
+                    else if(current[i]>0){
+                        currentPoly=("+"+current[i]);  
+                    }
+                    else if(current[i]<0){
+                        currentPoly=(""+current[i]);
+                    }
+                }
+                else if (i ==1 && current[i]!=0 && current.length!=2 ){
+                    if(current[i]>=0){
+                        currentPoly=("+"+current[i]+"x"  + currentPoly);
+                    }else
+                    currentPoly=(current[i]+"x"  + currentPoly);
+                }
+                else if (i ==1 && current[i]!=0 && current.length==2 ){
+                    currentPoly=(current[i]+"x"  + currentPoly);
+                }
+                
+                else if (i<current.length-1){
+                    if(current[i]>=0){
+                        currentPoly=("+"+current[i]+"x^"+i  + currentPoly);
+                    }
+                    else if(current[i-1]<0){
+                        currentPoly=(+current[i]+"x^"+i  + currentPoly);
+                    }
+                    
+                }
+                else if (i==current.length-1){
+                    if(current[i]!=1){
+                        currentPoly=(+current[i]+"x^"+i  + currentPoly);
+                    }else
+                        currentPoly=("x^"+i  + currentPoly);
+                    
+                }
+            }
+            System.out.println("next-----------------" + currentPoly);
+        }
+//    return poly;  
+    }
 }
 

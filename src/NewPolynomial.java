@@ -20,22 +20,25 @@ public class NewPolynomial {
 
     public int[] extractCoef(String poly) {
 
-        boolean minus= (true);
+        boolean minus= (false);
         int i = 1;
         int k = 0;
 
         int firstCoef;
 
         if(poly.substring(0,1).equals("-")){
-            poly.substring(1,poly.length());
+            poly  = poly.substring(1,poly.length());
             {
                 minus = true;
 
             }
         }
         if(poly.length()==1&& !poly.substring(0,1).equals("x")){
+            
             coefficient  = new int[1];
-            coefficient[0] = Integer.valueOf(poly.substring(0,1));
+            if(minus)
+            coefficient[0] = -Integer.valueOf(poly.substring(0,1));
+            else coefficient[0] = Integer.valueOf(poly.substring(0,1));
             degree = 0;
             return coefficient;
         }
@@ -67,14 +70,18 @@ public class NewPolynomial {
 
         if(poly.length()==0){
             coefficient  = new int[1];
-            coefficient[0] = firstCoef;
+            if (minus)
+            coefficient[0] = -firstCoef;
+            else coefficient[0] = firstCoef;
             degree = 0;
         }else
             //if of ^0 return
 
             if(poly.length()==1){
                 coefficient  = new int[2];
-                coefficient[1] = firstCoef;
+                if (minus)
+                coefficient[1] = -firstCoef;
+                else coefficient[1] = firstCoef;
                 degree = 1;
             }else
                 //if^1 without^0 return here
@@ -89,12 +96,14 @@ public class NewPolynomial {
                     }
                     degree=Integer.valueOf(poly.substring(2,2+k));
 
-            //the string without the degree
-            poly = poly.substring(2+k,poly.length());
+                    //the string without the degree
+                    poly = poly.substring(2+k,poly.length());
                     
 //                    degree = Integer.valueOf(poly.substring(2,3));
                     coefficient = new int[degree+1];
-                    coefficient[degree] = firstCoef;
+                    if(minus)
+                    coefficient[degree] = -firstCoef;
+                    else coefficient[degree] = firstCoef;
 
 //                    if(poly.length()>3){
 //                        poly=poly.substring(3,poly.length());
@@ -171,8 +180,8 @@ public class NewPolynomial {
                 }else{
 
                     coefficient = new int[2];
-
-                    coefficient[1] = firstCoef;
+                    if(minus)    coefficient[1] = -firstCoef;
+                    else coefficient[1] = firstCoef;
                     coefficient[0] = Integer.valueOf(poly.substring(2,poly.length()));
                 }
         return coefficient;
@@ -204,12 +213,85 @@ public class NewPolynomial {
         }
         System.out.println(printer);
     }
+    
+    public void printWL() {
+
+        String printer = new String();
+
+        for (int i = 0; i < degree; i++) {
+            if (degree - i > 1 && coefficient[degree - i] != 0) {
+                printer = (printer + coefficient[degree - i] + "x^" + (degree - i) + "+");
+            }
+        }
+
+        if (degree > 0 && coefficient[1] != 0) {
+            printer = (printer + coefficient[1] + "x+");
+            if (coefficient[0] != 0) {
+                printer = (printer + coefficient[0] + "+");
+            }
+        } else {
+            if (coefficient[0] != 0) {
+                printer = (printer + coefficient[0] + "+");
+            }
+        }
+
+        if (degree > 0 && printer.length()>0) {
+            printer = printer.substring(0, printer.length() - 1);
+        }
+        System.out.print(printer);
+    }
 
     public void convertPrime(int p) {
         for (int i = 0; i <= this.degree; i++) {
             this.coefficient[i] = this.coefficient[i] % p;
         }
+        for (int i = 0; i <= this.degree; i++) {
+            while(this.coefficient[i]<0) this.coefficient[i]+=p;
+        }
 
+    }
+    //trqbva da pitam neshto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pls ako nqkoy go vidi da mi napomni :D
+    public NewPolynomial primeVersion(int p) {
+        this.convertPrime(p);
+        return this;
+
+    }
+    
+    public void defineByArray(int[] a){
+        int length = a.length;
+        this.coefficient = new int[length];
+        for (int i = 0; i<length; i++)
+        this.coefficient[i] = a[length-1-i];
+//        this.print();
+        removeLeadingO();
+    }
+    
+    public void removeLeadingO(){
+        degree = 0;
+        for (int i = 0; i <this.coefficient.length; i++) {
+            if (this.coefficient[this.coefficient.length-i-1] != 0) {;
+                degree = this.coefficient.length-i-1;
+//                 System.out.println("degree is:"+degree);
+                return;
+            }
+        }
+    }
+    
+    public boolean checkIfOne(){
+        removeLeadingO();
+        if(this.degree == 0 && coefficient[0] == 1){
+            return true;
+        }
+        else return false;
+    }
+    
+    public boolean checkIfZero(){
+        removeLeadingO();
+        if(this.degree<0) return true;
+        if(this.degree == 0 && coefficient[0] == 0){
+            return true;
+        }
+        else return false;
     }
 
     public int getDegree() {
