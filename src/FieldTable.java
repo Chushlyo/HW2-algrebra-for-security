@@ -34,6 +34,7 @@ public class FieldTable {
 //            System.out.println("quot is");
 //            q.print();
             q=ld.quot;
+            if (q.checkIfOne() && r.checkIfZero()) break;
             list.add(ld.rem);
             i++;       
         }
