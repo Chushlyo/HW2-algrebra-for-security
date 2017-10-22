@@ -55,9 +55,9 @@ public class Main {
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
                 p = new NewPolynomial(poly);
-                p.print();
+                p.printWL();
                 p.convertPrime(prime);
-                p.print();
+                p.printWL();
                 break;
             case 3:
                 System.out.println("Enter a prime number p");

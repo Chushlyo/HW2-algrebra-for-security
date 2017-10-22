@@ -62,10 +62,10 @@ public class LongDivision {
             NewPolynomial r2 = new NewPolynomial(lcr_lcb+"x^"+ (r.getDegree()-d1.getDegree()));
             r2 = pa.product(r2, d1).primeVersion(p);
             r = pa.difference(r, r2).primeVersion(p);
-            NewPolynomial current=r.changeDegree(r.getDegree()-1,r);
+            r.removeLeadingO();
 //            System.out.println("wtf");
 //            current.print();
-            r=current.primeVersion(p);
+            r=r.primeVersion(p);
 
         }
         System.out.println("The quotient is:");

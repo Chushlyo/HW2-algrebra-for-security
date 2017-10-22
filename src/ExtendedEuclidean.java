@@ -59,14 +59,14 @@ public class ExtendedEuclidean {
         gcd.print();
         if (gcd==new NewPolynomial("1")){
             System.out.println("second poly:X is");
-            x1.print();
+            x1.printWL();
             System.out.println("first poly:Y is");
-            y1.print();
+            y1.printWL();
         }else{
             System.out.println("second poly:X is");
-            x1.print();
+            x1.printWL();
             System.out.println("first poly:Y is");
-            y1.print();
+            y1.printWL();
         }
 
 
