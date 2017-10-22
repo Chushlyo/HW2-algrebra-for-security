@@ -26,14 +26,13 @@ public class NewField {
         this.exponent = n;
 //        this.fieldTemp = new ArrayList<>();
         this.fieldPoly = new ArrayList<>();
-        generate();
     }
     
       /**
      * method that generates irreducible polynomials
      */
     public void generate() {
-        
+        exponent--;
         ArrayList<int[]> sArray = new ArrayList();
             
         for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
@@ -56,29 +55,78 @@ public class NewField {
 //        /*
 //        Printes the arrays
 //        */
-//        for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
-//            for(int f = 0; f<sArray.get(pk).length; f++)
-//            System.out.print(sArray.get(pk)[f]);
-//            System.out.println();
-//        }
+        for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
+            for(int f = 0; f<sArray.get(pk).length; f++)
+            System.out.print(sArray.get(pk)[f]);
+            System.out.println();
+        }
 
         for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
             NewPolynomial tempPoly = new NewPolynomial("x^"+exponent);
             tempPoly.defineByArray(sArray.get(pk));
             fieldPoly.add(tempPoly);
-//            tempPoly.print();
+           //tempPoly.print();
         }
+        exponent++;
     }
     
         public ArrayList<NewPolynomial>  getPolys(){
-    
-        return this.fieldPoly;
+        return fieldPoly;
         }
         
         public void printField(){
             for (int i = 0; i<fieldPoly.size();i++)
                 fieldPoly.get(i).print();
         }
+        void print() {
+//        for (NewPolynomial p : fieldPoly) {
+//            for (int i = 0; i < p.getCoef().length; i++) {
+//                System.out.println(i + " is " + p.getCoef()[i]);
+//            }
+//            System.out.println("next-----------------");
+//        }
+
+        boolean onlyCoefficients = true;
+        int numberOfPol = 0;
+        for (NewPolynomial p : fieldPoly) {
+            numberOfPol++;
+            int place = p.getCoef().length - 1;
+            for (int i =  p.getCoef().length - 1; i >= 0; i--) {
+                if ( p.getCoef()[i] != 0 && place == 2) {
+                    System.out.print("X^" +  p.getCoef()[i]);
+                    onlyCoefficients = false;
+                } else if (place == 1) {
+                    if ( p.getCoef()[i] != 1 &&  p.getCoef()[i] != 0) {
+                        if (onlyCoefficients) {
+                            System.out.print( p.getCoef()[i] + "X");
+                        } else {
+                            System.out.print(" + " +  p.getCoef()[i] + "X");
+                        }
+                        onlyCoefficients = false;
+                    }
+                    if ( p.getCoef()[i] == 1) {
+                        if (onlyCoefficients) {
+                            System.out.print("X");
+                        } else {
+                            System.out.print(" + " + "X");
+                        }
+                        onlyCoefficients = false;
+                    }
+
+                } else if (place == 0) {
+                    if (onlyCoefficients) {
+                        System.out.print( p.getCoef()[i]);
+                    } else if ( p.getCoef()[i] != 0) {
+                        System.out.print(" + " +  p.getCoef()[i]);
+                    }
+                }
+                place--;
+            }
+            if (numberOfPol !=  fieldPoly.size()) System.out.println(",");
+            onlyCoefficients = true;
+
+        }
+    }
 
 }
 

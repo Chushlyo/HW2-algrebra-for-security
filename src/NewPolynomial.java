@@ -193,19 +193,31 @@ public class NewPolynomial {
 
         for (int i = 0; i < degree; i++) {
             if (degree - i > 1 && coefficient[degree - i] != 0) {
-                printer = (printer + coefficient[degree - i] + "x^" + (degree - i) + "+");
+                if (coefficient[degree - i] != 1) {
+                    printer = (printer + coefficient[degree - i] + "x^" + (degree - i) + "+");
+                }
+                if (coefficient[degree - i] == 1) {
+                    printer = (printer  + "x^" + (degree - i) + "+");
+                }
+            } else {
+                if (coefficient[0] != 0 ) {
+                    printer = (printer + coefficient[0]);
+                }
             }
         }
 
         if (degree > 0 && coefficient[1] != 0) {
-            printer = (printer + coefficient[1] + "x+");
+            if (coefficient[1] == 1) {
+                printer = (printer + "x+");
+            } else{
+                printer = (printer + coefficient[1] + "x+");
+            }
+
             if (coefficient[0] != 0) {
                 printer = (printer + coefficient[0] + "+");
             }
         } else {
-            if (coefficient[0] != 0) {
-                printer = (printer + coefficient[0] + "+");
-            }
+                printer = (printer + coefficient[0]);
         }
 
         if (degree > 0 && printer.length()>0) {

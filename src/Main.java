@@ -68,10 +68,15 @@ public class Main {
                 }
                 System.out.println("Enter the exponent n.");
                 exponent = scanner.nextInt();
-                field = new Field(prime, exponent);
-                field.generate();
-                field.print();
-                System.out.println("\n The field consists of " + field.field.size() + " elements.");
+              // field = new Field(prime, exponent);
+                NewField field1= new NewField(prime,exponent);
+                field1.generate();
+                field1.printField();
+               // field1.print();
+               // field.generate();
+               // field.print();
+                System.out.println("\n The field consists of " + field1.fieldPoly.size() + " elements.");
+               // System.out.println("\n 2 The field consists of " + field.field.size() + " elements.");
                 break;
             case 4:
                 System.out.println("Enter a prime number p");
@@ -88,7 +93,7 @@ public class Main {
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
-                 p1 = new NewPolynomial(poly1);
+                p1 = new NewPolynomial(poly1);
                 p1.print();
                 p1.convertPrime(prime);
                 p1.print();
@@ -166,7 +171,7 @@ public class Main {
                 p1.print();
                 p1.convertPrime(prime);
                 p1.print();
-                extendedEuclidean=new ExtendedEuclidean();
+                extendedEuclidean=new ExtendedEuclidean(prime);
                 extendedEuclidean.compute(p,p1);
                 break;
             case 7:
@@ -193,7 +198,7 @@ public class Main {
                 System.out.println("Enter the exponent n.");
                 exponent = scanner.nextInt();
                 NewField sfield = new NewField(prime, exponent);
-//                sfield.generate();
+                sfield.generate();
                 break;
             case 9:
                 System.out.println("Enter a prime number p");
