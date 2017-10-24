@@ -14,8 +14,12 @@ public class ExtendedEuclidean {
         longDivision = new LongDivision(prime);
     }
     
-    void compute(NewPolynomial a, NewPolynomial b) {
-
+    NewPolynomial compute(NewPolynomial a, NewPolynomial b) {
+//            if(a.getDegree()<b.getDegree()){
+//                NewPolynomial old=a;
+//                a=b;
+//                b=old;
+//            }
         while (!b.checkIfZero()) {
             System.out.println("Long Division is:");
             a.print();
@@ -70,6 +74,6 @@ public class ExtendedEuclidean {
         }
 
 
-
+     return gcd;
     }
 }

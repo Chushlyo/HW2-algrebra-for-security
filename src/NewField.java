@@ -51,15 +51,15 @@ public class NewField {
                 j=j%prime;
             }
         }
-//
-//        /*
-//        Printes the arrays
-//        */
-        for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
-            for(int f = 0; f<sArray.get(pk).length; f++)
-            System.out.print(sArray.get(pk)[f]);
-            System.out.println();
-        }
+////
+////        /*
+////        Printes the arrays
+////        */
+//        for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
+//            for(int f = 0; f<sArray.get(pk).length; f++)
+//            System.out.print(sArray.get(pk)[f]);
+//            System.out.println();
+//        }
 
         for (int pk=0; pk< Math.pow((double) (prime), (double) exponent+1 );pk++){
             NewPolynomial tempPoly = new NewPolynomial("x^"+exponent);
@@ -74,9 +74,18 @@ public class NewField {
         return fieldPoly;
         }
         
-        public void printField(){
-            for (int i = 0; i<fieldPoly.size();i++)
+        public void printField() {
+            for (int i = 0; i < fieldPoly.size(); i++) {
                 fieldPoly.get(i).print();
+            }
+        }
+        public void printFieldIrreduc(int degree){
+            for (int i = 0; i < fieldPoly.size(); i++) {
+                if(fieldPoly.get(i).getDegree()==degree){
+                    fieldPoly.get(i).print();
+                }
+
+            }
         }
         void print() {
 //        for (NewPolynomial p : fieldPoly) {

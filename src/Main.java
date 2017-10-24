@@ -17,6 +17,8 @@ public class Main {
     LongDivision longDivision;
     //Extended Euclidean
     ExtendedEuclidean extendedEuclidean;
+    //Irreducibility check
+    Irreducibility irreducibility;
 
 
     void computation() {
@@ -37,7 +39,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         userChoice = scanner.nextInt();
         switch (userChoice) {
-            case 1:
+            case 1://integer mod
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -45,7 +47,7 @@ public class Main {
                     System.exit(0);
                 }
                 break;
-            case 2:
+            case 2://Polynomials with integer coefficients
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -59,7 +61,7 @@ public class Main {
                 p.convertPrime(prime);
                 p.printWL();
                 break;
-            case 3:
+            case 3://Finite fields
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -68,17 +70,12 @@ public class Main {
                 }
                 System.out.println("Enter the exponent n.");
                 exponent = scanner.nextInt();
-              // field = new Field(prime, exponent);
                 NewField field1= new NewField(prime,exponent);
                 field1.generate();
                 field1.printField();
-               // field1.print();
-               // field.generate();
-               // field.print();
                 System.out.println("\n The field consists of " + field1.fieldPoly.size() + " elements.");
-               // System.out.println("\n 2 The field consists of " + field.field.size() + " elements.");
                 break;
-            case 4:
+            case 4://arithmetic polynomials
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -130,7 +127,7 @@ public class Main {
                 res.convertPrime(prime);
                 res.print();
                 break;
-            case 5:
+            case 5://long division
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -152,7 +149,7 @@ public class Main {
                 longDivision=new LongDivision(prime);
                 longDivision.divide(p,p1);
                 break;
-            case 6:
+            case 6://extended euclidean
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -174,7 +171,7 @@ public class Main {
                 extendedEuclidean=new ExtendedEuclidean(prime);
                 extendedEuclidean.compute(p,p1);
                 break;
-            case 7:
+            case 7://two polynomials equal third one
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -188,7 +185,7 @@ public class Main {
                 field.getPoly();
 //                System.out.println("\n The field consists of " + field.field.size() + " elements.");
                 break;
-            case 8:
+            case 8://addition multiplication table
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -200,7 +197,7 @@ public class Main {
                 NewField sfield = new NewField(prime, exponent);
                 sfield.generate();
                 break;
-            case 9:
+            case 9:// arithmetic finite fields
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
                 if (!primeCheck(prime)) {
@@ -225,8 +222,25 @@ public class Main {
                 break;
                 //two polynomials should be from the same field, check needs to be done
                 
-            case 10:
-                System.out.println(-1%2);
+            case 10: // irreducibility
+                System.out.println("Enter a prime number p");
+                prime = scanner.nextInt();
+                if (!primeCheck(prime)) {
+                    System.out.println("The number is not prime.");
+                    System.exit(0);
+                }
+                System.out.println("Enter a polynomial.");
+                poly = scanner.next();
+                p = new NewPolynomial(poly);
+                if(p.getDegree()<1){
+                    System.out.println("Polynomial should have a degree at least 1.");
+                    System.exit(0);
+                }
+                p.printWL();
+                p.convertPrime(prime);
+                p.printWL();
+                irreducibility=new Irreducibility(p,prime);
+                irreducibility.checkIrreducibility();
                 break;
 
         }
