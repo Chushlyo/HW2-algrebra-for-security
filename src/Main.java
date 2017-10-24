@@ -12,14 +12,15 @@ public class Main {
     Field field;
     int exponent, prime;
     //User Input
-    String poly, poly1;
+    String poly, poly1,poly2;
     //Long division
     LongDivision longDivision;
     //Extended Euclidean
     ExtendedEuclidean extendedEuclidean;
     //Irreducibility check
     Irreducibility irreducibility;
-
+    //Congruence
+    EqualModulo equalModulo;
 
     void computation() {
         System.out.println("Choose one of the operations: \n " +
@@ -178,12 +179,26 @@ public class Main {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
-                System.out.println("Enter the exponent n.");
-                exponent = scanner.nextInt();
-                field = new Field(prime, exponent);
-                field.generate();
-                field.getPoly();
-//                System.out.println("\n The field consists of " + field.field.size() + " elements.");
+                System.out.println("Enter first polynomial.");
+                poly = scanner.next().toLowerCase();
+                p = new NewPolynomial(poly);
+                p.print();
+                p.convertPrime(prime);
+                p.print();
+                System.out.println("Enter second polynomial.");
+                poly1 = scanner.next().toLowerCase();
+                p1 = new NewPolynomial(poly1);
+                p1.print();
+                p1.convertPrime(prime);
+                p1.print();
+                System.out.println("Enter third polynomial.");
+                poly2 = scanner.next().toLowerCase();
+                p3 = new NewPolynomial(poly2);
+                p3.print();
+                p3.convertPrime(prime);
+                p3.print();
+                equalModulo=new EqualModulo(p,p1,p3,prime);
+                equalModulo.congruent();
                 break;
             case 8://addition multiplication table
                 System.out.println("Enter a prime number p");
