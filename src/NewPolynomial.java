@@ -189,56 +189,130 @@ public class NewPolynomial {
     }
 
     public void print() {
+        if (degree == 0 && coefficient[0]>=0){
+            System.out.println(coefficient[0]);
+            return;
+        }
+        else if (degree == 0 && coefficient[0]<0){
+            System.out.println(coefficient[0]);
+            return;
+        }
+        
+       
 
         String printer = new String();
-
-        for (int i = 0; i < degree; i++) {
-            if (degree - i > 1 && coefficient[degree - i] != 0) {
-                printer = (printer + coefficient[degree - i] + "x^" + (degree - i) + "+");
+        if(degree>1 && coefficient[degree]!=1 &&  coefficient[degree]!=-1)
+            printer = (coefficient[degree] + "x^" + (degree));
+        else if(degree>1 && coefficient[degree]==1)
+            printer = ("x^" + (degree));
+        else if(degree>1 && coefficient[degree]==-1)
+            printer = ("-x^" + (degree));
+        for (int i = 1; i <= degree; i++){
+            if (degree - i > 1 && coefficient[degree - i] > 1) {
+                printer = (printer +"+"+ coefficient[degree - i] + "x^" + (degree - i));
+            }
+            if (degree - i > 1 && coefficient[degree - i] == 1) {
+                printer = (printer +"+"+"x^" + (degree - i));
+            }
+            else if (degree - i > 1 && coefficient[degree - i] == -1 ) {
+                printer = (printer + "-" + "x^" + (degree - i));
+            }
+            else if (degree - i > 1 && coefficient[degree - i] <  -1) {
+                printer = (printer + coefficient[degree - i] + "x^" + (degree - i));
             }
         }
-
-        if (degree > 0 && coefficient[1] != 0) {
-            printer = (printer + coefficient[1] + "x+");
-            if (coefficient[0] != 0) {
-                printer = (printer + coefficient[0] + "+");
-            }
-        } else {
-            if (coefficient[0] != 0) {
-                printer = (printer + coefficient[0] + "+");
-            }
+        
+        if(degree == 1 && coefficient[1] == 1){
+            printer = ("x");
+        }
+        
+        else if(degree == 1 && coefficient[1] == -1){
+            printer = ("-" + "x");
+        }
+        else if(degree ==1  ){
+            printer = ( coefficient[1] + "x");
+        }
+        
+        else if (degree > 0 && coefficient[1] > 0) {
+            printer = (printer +"+"+ coefficient[1] + "x");
+        }
+        else if(degree > 0 && coefficient[1] == -1){
+            printer = (printer + "-" + "x");
+        }
+        else if(degree > 0 && coefficient[1] < 0){
+            printer = (printer + coefficient[1] + "x");
         }
 
-        if (degree > 0 && printer.length()>0) {
-            printer = printer.substring(0, printer.length() - 1);
+        if (coefficient[0] > 0) {
+            printer = (printer +"+"+ coefficient[0]);
         }
+        if (coefficient[0] < 0) {
+            printer = (printer + coefficient[0]);
+        }
+        
         System.out.println(printer);
     }
     
     public void printWL() {
-
+        if (degree == 0 && coefficient[0]>=0){
+            System.out.print(coefficient[0]);
+            return;
+        }
+        else if (degree == 0 && coefficient[0]<0){
+            System.out.print(coefficient[0]);
+            return;
+        }
         String printer = new String();
-
-        for (int i = 0; i < degree; i++) {
-            if (degree - i > 1 && coefficient[degree - i] != 0) {
-                printer = (printer + coefficient[degree - i] + "x^" + (degree - i) + "+");
+        if(degree>1 && coefficient[degree]!=1 &&  coefficient[degree]!=-1)
+            printer = (coefficient[degree] + "x^" + (degree));
+        else if(degree>1 && coefficient[degree]==1)
+            printer = ("x^" + (degree));
+        else if(degree>1 && coefficient[degree]==-1)
+            printer = ("-x^" + (degree));
+        for (int i = 1; i <= degree; i++){
+            if (degree - i > 1 && coefficient[degree - i] > 1) {
+                printer = (printer +"+"+ coefficient[degree - i] + "x^" + (degree - i));
+            }
+            if (degree - i > 1 && coefficient[degree - i] == 1) {
+                printer = (printer +"+"+"x^" + (degree - i));
+            }
+            else if (degree - i > 1 && coefficient[degree - i] == -1 ) {
+                printer = (printer + "-" + "x^" + (degree - i));
+            }
+            else if (degree - i > 1 && coefficient[degree - i] <  -1) {
+                printer = (printer + coefficient[degree - i] + "x^" + (degree - i));
             }
         }
-
-        if (degree > 0 && coefficient[1] != 0) {
-            printer = (printer + coefficient[1] + "x+");
-            if (coefficient[0] != 0) {
-                printer = (printer + coefficient[0] + "+");
-            }
-        } else {
-            if (coefficient[0] != 0) {
-                printer = (printer + coefficient[0] + "+");
-            }
+        
+        if(degree == 1 && coefficient[1] == 1){
+            printer = ("x");
+        }
+        
+        else       
+        if(degree == 1 && coefficient[1] == -1){
+            printer = ("-" + "x");
+        }
+        else if(degree ==1 ){
+            printer = ( coefficient[1] + "x");
+        }
+        
+        else if (degree > 0 && coefficient[1] > 0) {
+            printer = (printer +"+"+ coefficient[1] + "x");
+        }
+        else if(degree > 0 && coefficient[1] == -1){
+            printer = (printer + "-" + "x");
+        }
+        else if(degree > 0 && coefficient[1] < 0){
+            printer = (printer + coefficient[1] + "x");
         }
 
-        if (degree > 0 && printer.length()>0) {
-            printer = printer.substring(0, printer.length() - 1);
+        if (coefficient[0] > 0) {
+            printer = (printer +"+"+ coefficient[0]);
         }
+        if (coefficient[0] < 0) {
+            printer = (printer + coefficient[0]);
+        }
+        
         System.out.print(printer);
     }
 

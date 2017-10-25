@@ -58,9 +58,9 @@ public class Main {
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
                 p = new NewPolynomial(poly);
-                p.printWL();
+                p.print();
                 p.convertPrime(prime);
-                p.printWL();
+                p.print();
                 break;
             case 3://Finite fields
                 System.out.println("Enter a prime number p");
@@ -149,6 +149,10 @@ public class Main {
                 p1.print();
                 longDivision=new LongDivision(prime);
                 longDivision.divide(p,p1);
+                System.out.println("Quotient is");
+                longDivision.quot.print();
+                System.out.println("Reminder is");
+                longDivision.rem.print();
                 break;
             case 6://extended euclidean
                 System.out.println("Enter a prime number p");
@@ -211,6 +215,13 @@ public class Main {
                 exponent = scanner.nextInt();
                 NewField sfield = new NewField(prime, exponent);
                 sfield.generate();
+                System.out.println("Enter a polynomial.");
+                poly = scanner.next();
+                p = new NewPolynomial(poly);
+                p.print();
+                p.convertPrime(prime);
+                p.print();
+                FieldTable table = new FieldTable(sfield,p);
                 break;
             case 9:// arithmetic finite fields
                 System.out.println("Enter a prime number p");

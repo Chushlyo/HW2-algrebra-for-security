@@ -1,16 +1,7 @@
 
 import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Nikolay
- */
 public class NewField {
     int prime;
     int exponent;
@@ -65,7 +56,6 @@ public class NewField {
             NewPolynomial tempPoly = new NewPolynomial("x^"+exponent);
             tempPoly.defineByArray(sArray.get(pk));
             fieldPoly.add(tempPoly);
-           //tempPoly.print();
         }
         exponent++;
     }

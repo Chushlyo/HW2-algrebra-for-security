@@ -21,6 +21,7 @@ public class PolynomialsArithmetic {
         for (int i = 0; i <= poly2.getDegree(); i++) result.addtoThisCoef(i, poly2.getThisCoef(i));
         //in order to remove adding the first degree at the start
         result.subtoThisCoef(result.getDegree(), 1);
+        result.removeLeadingO();
         return result;
     }
 
@@ -33,11 +34,13 @@ public class PolynomialsArithmetic {
         for (int i = 0; i <= poly2.getDegree(); i++) result.subtoThisCoef(i, poly2.getThisCoef(i));
         //in order to remove adding the first degree at the start
         result.subtoThisCoef(result.getDegree(), 1);
+        result.removeLeadingO();
         return result;
     }
 
     public NewPolynomial scalar(NewPolynomial poly1, int s) {
         NewPolynomial result = poly1.scalar(s);
+        result.removeLeadingO();
         return result;
     }
 
@@ -53,6 +56,7 @@ public class PolynomialsArithmetic {
 
         //in order to remove adding the first degree at the start
         result.subtoThisCoef(result.getDegree(), 1);
+        result.removeLeadingO();
         return result;
     }
 
