@@ -21,6 +21,7 @@ public class Main {
     Irreducibility irreducibility;
     //Congruence
     EqualModulo equalModulo;
+    IntegerMod integerMod;
 
     void computation() {
         System.out.println("Choose one of the operations: \n " +
@@ -43,10 +44,14 @@ public class Main {
             case 1://integer mod
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
+                System.out.println("Enter an Integer");
+                int integer = scanner.nextInt();
+                IntegerMod im = new IntegerMod();
+                System.out.println(im.modReduction(prime,integer));
                 break;
             case 2://Polynomials with integer coefficients
                 System.out.println("Enter a prime number p");

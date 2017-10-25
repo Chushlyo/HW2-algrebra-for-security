@@ -3,6 +3,7 @@ public class NewPolynomial {
 
     private int[] coefficient;
     private int degree;
+    private IntegerMod integerMod;
 
     public NewPolynomial(String poly) {
 
@@ -311,11 +312,9 @@ public class NewPolynomial {
 
     public void convertPrime(int p) {
         for (int i = 0; i <= this.degree; i++) {
-            this.coefficient[i] = this.coefficient[i] % p;
+            this.coefficient[i] = integerMod.modReduction(p, this.coefficient[i]);
         }
-        for (int i = 0; i <= this.degree; i++) {
-            while(this.coefficient[i]<0) this.coefficient[i]+=p;
-        }
+        
 
     }
     //trqbva da pitam neshto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pls ako nqkoy go vidi da mi napomni :D

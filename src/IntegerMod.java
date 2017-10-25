@@ -1,28 +1,25 @@
 public class IntegerMod {
     int modp; //mod p 
       
-    public void isPrime(int p, int x) {
-        if (p<100){
-            for(int i=2; i<p; i++) {
-                if(p%i==0){
-                    System.out.println("p is not prime");
-                    } else {
-                    modReduction(p,x); 
-                    break;
-                   }
-            }
+    boolean primeCheck(int p) {
+        
+        if (p == 2) {
+            return true;
         }
+        if (p % 2 == 0) return false;// the number is even
+        for (int i = 3; i * i <= p; i += 2) { //check of being divisible by odd number
+            if (p % i == 0)
+                return false;
+        }
+        return true;
     }
     
     //Naive method
-    public double modReduction(int p, int x){ //where p=m
-        double y= x/p;
-        double q=0;
-        while (y >= p){
-            q=Math.floor(x/p);
-            y=x-q*p;
-        }
-        return y;
+    public int modReduction(int m, int x){ //where p=m
+        double q= Math.floor(x/m);
+        double y = x - q*m;
+        if(y<0) y = y + m;
+        return (int)y;
     }
     
     //Modular reduction with radix b
