@@ -9,7 +9,6 @@ public class Main {
     //Polynomial structure
     NewPolynomial p,p1,p3,p4;
     //Field structure
-    Field field;
     int exponent, prime;
     //User Input
     String poly, poly1,poly2;
@@ -40,6 +39,7 @@ public class Main {
                 "10. Test irreducibility of polynomial mod p and produce irreducible polynomials of prescribed degree.");
         Scanner scanner = new Scanner(System.in);
         userChoice = scanner.nextInt();
+        integerMod = new IntegerMod();
         switch (userChoice) {
             case 1://integer mod
                 System.out.println("Enter a prime number p");
@@ -56,13 +56,13 @@ public class Main {
             case 2://Polynomials with integer coefficients
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
-                p = new NewPolynomial(poly);
+                p = new NewPolynomial(poly);                
                 p.print();
                 p.convertPrime(prime);
                 p.print();
@@ -70,7 +70,7 @@ public class Main {
             case 3://Finite fields
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -84,7 +84,7 @@ public class Main {
             case 4://arithmetic polynomials
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -136,7 +136,7 @@ public class Main {
             case 5://long division
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -162,7 +162,7 @@ public class Main {
             case 6://extended euclidean
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -180,19 +180,18 @@ public class Main {
                 p1.print();
                 extendedEuclidean=new ExtendedEuclidean(prime);
                 extendedEuclidean.compute(p,p1);
-                //        System.out.println("GCD is ");
-                System.out.println();
+                System.out.println("GCD is ");
                 extendedEuclidean.gcd.print();
                 
-                    System.out.println("second poly:X is");
-                    extendedEuclidean.y1.print();
-                    System.out.println("first poly:Y is");
-                    extendedEuclidean.x1.print();
-                break;
+                System.out.println("Y is");
+                extendedEuclidean.y1.print();
+                System.out.println("X is");
+                extendedEuclidean.x1.print();
+            break;
             case 7://two polynomials equal third one
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -220,7 +219,7 @@ public class Main {
             case 8://addition multiplication table
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -239,7 +238,7 @@ public class Main {
             case 9:// arithmetic finite fields
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -284,7 +283,7 @@ public class Main {
             case 10: // irreducibility
                 System.out.println("Enter a prime number p");
                 prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
+                if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
                     System.exit(0);
                 }
@@ -305,176 +304,6 @@ public class Main {
         }
 
     }
-
-    boolean primeCheck(int p) {
-        if (p == 2) {
-            return true;
-        }
-        if (p % 2 == 0) return false;// the number is even
-        for (int i = 3; i * i <= p; i += 2) { //check of being divisible by odd number
-            if (p % i == 0)
-                return false;
-        }
-        return true;
-    }
-
-    public Polynomial readPolynomial(String poly) {
-
-        int i = 1;
-        Polynomial[] p = new Polynomial[500];
-
-        int firstCoef;
-
-        //If the first thing you read is x, then the coef is 1
-        if (poly.substring(0, 1).equals("x")) {
-            firstCoef = 1;
-        }
-        int k = 0;
-
-        //if it is not x find out what the coef is
-        while (!poly.substring(k, k + 1).equals("x")) {
-            k++;
-            //if it is of ^0 then you need this
-            if (k >= poly.length()) break;
-        }
-        firstCoef = Integer.valueOf(poly.substring(0, k));
-
-        //the string without the coef
-        poly = poly.substring(k, poly.length());
-
-
-        if (poly.length() == 0) return new Polynomial(firstCoef, 0);
-        //if of ^0 return 
-
-        if (poly.length() == 1) return new Polynomial(firstCoef, 1);
-        //if^1 without^0 return here
-
-        //if it is of bigger degree than 1 Go here
-        if (poly.substring(1, 2).equals("^")) {
-
-            //the first polynomial
-            p[0] = new Polynomial(firstCoef, Integer.valueOf(poly.substring(2, 3)));
-
-            poly = poly.substring(3, poly.length());
-
-            while (poly.length() > 0) {
-
-                if (poly.substring(0, 1).equals("x")) {
-                    firstCoef = 1;
-                }
-                k = 0;
-
-                while (!poly.substring(k, k + 1).equals("x")) {
-                    k++;
-                    if (k >= poly.length()) break;
-                }
-
-                firstCoef = Integer.valueOf(poly.substring(0, k));
-
-
-                poly = poly.substring(k, poly.length());
-
-
-                if (poly.length() == 0) {
-                    p[i] = new Polynomial(firstCoef, 0);
-                    p[i].print();
-                    break;
-                }
-                //if of ^0 return
-
-                if (poly.length() == 1) {
-                    p[i] = new Polynomial(firstCoef, 1);
-                    p[i].print();
-                    break;
-                }
-                //if^1 without^0 return here
-
-                if (poly.substring(1, 2).equals("^")) {
-                    p[i] = new Polynomial(firstCoef, Integer.valueOf(poly.substring(2, 3)));
-                    poly = poly.substring(3, poly.length());
-                } else {
-                    p[i] = new Polynomial(firstCoef, 1);
-//                    p[i].print();
-                    p[i + 1] = new Polynomial(Integer.valueOf(poly.substring(2, poly.length())), 0);
-//                    p[i+1].print();
-                    break;
-                }
-
-                i++;
-            }
-        } else {
-            p[0] = new Polynomial(firstCoef, 1);
-            p[0].print();
-            p[1] = new Polynomial(Integer.valueOf(poly.substring(2, poly.length())), 0);
-            p[1].print();
-
-        }
-
-
-//        p[0] = p[0].plus(p[1]);
-        p[0] = p[0].plus(p[1]);
-        p[0].print();
-
-
-//        p[i-1].print();
-//        System.out.println("here+" + poly);
-
-
-//        
-//        if(!poly.substring(0,1).equals("x")){
-//            
-//            firstCoef = Integer.valueOf(poly.substring(0,1));
-//            poly = poly.substring(3,poly.length());
-//        }
-//        else {
-//            poly = poly.substring(2,poly.length());
-//            firstCoef=1;
-//        }
-////        System.out.println(firstCoef);
-//        int highDegree=Integer.valueOf(poly.substring(0,1));
-//        
-//        p[0] = new Polynomial(firstCoef,highDegree);
-//        
-//        poly=poly.substring(2,poly.length());
-////        p[0].print();
-////       System.out.println("xxx  "+poly);
-//        
-//        while(poly.length()>4){
-//            if(!poly.substring(0,1).equals("x")){
-//                firstCoef = Integer.valueOf(poly.substring(0,1));
-//                poly = poly.substring(3,poly.length());
-//            }
-//            else {
-//                poly = poly.substring(2,poly.length());
-//                firstCoef=1;
-//            }
-//            System.out.println(firstCoef);
-//          
-//            highDegree=Integer.valueOf(poly.substring(0,1));
-//
-//            p[i] = new Polynomial(firstCoef,highDegree);
-//            p[i].print();
-//            poly=poly.substring(2,poly.length());
-//        }
-//        
-//        if(poly.length()==4){
-//            
-//        }
-//        
-//                    
-//        
-//        
-//        
-//        
-////        int kk = poly.length()/5;//poly.charAt(3);
-////        System.out.println(kk);
-////        int[] readPoly = new int[kk];
-//        
-
-        return p[0];
-
-    }
-
     public static void main(String[] args) {
         new Main().computation();
     }

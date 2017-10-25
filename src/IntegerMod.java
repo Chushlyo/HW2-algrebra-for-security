@@ -1,8 +1,10 @@
 public class IntegerMod {
     int modp; //mod p 
       
-    boolean primeCheck(int p) {
-        
+    /*
+    Checks if a number is prime
+    */
+    boolean primeCheck(int p) {        
         if (p == 2) {
             return true;
         }
@@ -14,7 +16,9 @@ public class IntegerMod {
         return true;
     }
     
-    //Naive method
+    /*
+    Naive method as specified in the book
+    */
     public int modReduction(int m, int x){ //where p=m
         double q= Math.floor(x/m);
         double y = x - q*m;
@@ -22,7 +26,7 @@ public class IntegerMod {
         return (int)y;
     }
     
-    //Modular reduction with radix b
+    //Modular reduction with radix b as specified in the book. Not used.
     public double modReductionRadix (int p, int x, int b){ //p=m
         double d = x; //d=x'
         String s = Double.toString(d);

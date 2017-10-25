@@ -1,3 +1,8 @@
+/*
+    Upon input of 2 field elements produces the sum and product.
+    Also produces the product of the first polynomial times the inverse of the 
+    second polynomial.
+*/
 public class FieldsArithmetic {
     NewPolynomial poly1;
     NewPolynomial poly2;
@@ -13,7 +18,10 @@ public class FieldsArithmetic {
         this.prime = p;
     }
     
-    
+    /*
+    The sum of the 2 polynomials modded to the smalles element which is not
+    in the field.
+    */
     public NewPolynomial sum() {
         NewPolynomial result;
         result = polynomialsArithmetic.sum(poly1,poly2);
@@ -25,14 +33,10 @@ public class FieldsArithmetic {
         return result;
     }
     
-    NewPolynomial difference() {
-        return polynomialsArithmetic.difference(poly1,poly2);
-    }
-
-    NewPolynomial scalar(int s){
-        return polynomialsArithmetic.scalar(poly1,s);
-    }
-
+    /*
+    The product of the 2 polynomials modded to the smalles element which is not
+    in the field.
+    */
     public NewPolynomial product() {
         NewPolynomial result;
         result = polynomialsArithmetic.product(poly1,poly2);
@@ -43,12 +47,15 @@ public class FieldsArithmetic {
         result.removeLeadingO();
         return result;
     }
-
+    /*
+    Produces the quotient as specified in the assignment.
+    */
     public NewPolynomial quotient() {
         ExtendedEuclidean e = new ExtendedEuclidean(prime);
         e.compute(poly3,poly2);
         if (e.gcd.checkIfOne()){
-            return e.y1;
+            this.poly2 = e.y1;
+            return this.product();
         }
         NewPolynomial result = null;
         return result;   

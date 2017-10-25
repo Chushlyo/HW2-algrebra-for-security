@@ -1,18 +1,7 @@
 
 public class PolynomialsArithmetic {
 
-//    Polynomial sum() {
-//        Polynomial result = null;
-//        int[] firstPoly= poly1.getCoefficient();
-//        int[] secondPoly= poly2.getCoefficient();
-//        int length=secondPoly.length;
-//         if(firstPoly.length>secondPoly.length){
-//             length=firstPoly.length;
-//         }
-//        int[] coeffResult=new int[length];
-//        result.setCoefficient(coeffResult);
-//        return result;
-//    }
+
 
     public NewPolynomial sum(NewPolynomial poly1, NewPolynomial poly2) {
         int newDegree = Math.max(poly1.getDegree(), poly2.getDegree());

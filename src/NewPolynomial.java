@@ -1,4 +1,9 @@
 
+/*
+    Creates a polynomial of a given degreee
+    Coefficients are saved in array with the index being the degree 
+    they correspond to.
+*/
 public class NewPolynomial {
 
     private int[] coefficient;
@@ -6,12 +11,16 @@ public class NewPolynomial {
     private IntegerMod integerMod;
 
     public NewPolynomial(String poly) {
-
+        integerMod = new IntegerMod();
         this.coefficient = extractCoef(poly);
         this.removeLeadingO();
 
     }
-
+    
+    /*
+        Given a string input reads the polynomial and creates the coefficient
+        array.
+    */
     public int[] extractCoef(String poly) {
 
         boolean minus= (false);
@@ -181,7 +190,10 @@ public class NewPolynomial {
                 }
         return coefficient;
     }
-
+    
+    /*
+        Prints the array.
+    */
     public void print() {
         if (degree == 0 && coefficient[0]>=0){
             System.out.println(coefficient[0]);
@@ -247,6 +259,9 @@ public class NewPolynomial {
         System.out.println(printer);
     }
     
+    /*
+        Prints the array without a new line
+    */
     public void printWL() {
         if (degree == 0 && coefficient[0]>=0){
             System.out.print(coefficient[0]);
@@ -309,41 +324,55 @@ public class NewPolynomial {
         
         System.out.print(printer);
     }
-
+    
+    /*
+        Changes all the coefficients of the array with their corresponding
+        integer to the prime.
+    */
     public void convertPrime(int p) {
         for (int i = 0; i <= this.degree; i++) {
             this.coefficient[i] = integerMod.modReduction(p, this.coefficient[i]);
         }
-        
+        this.removeLeadingO();
 
     }
-    //trqbva da pitam neshto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pls ako nqkoy go vidi da mi napomni :D
+    /*
+        Same functions as the above
+    */
     public NewPolynomial primeVersion(int p) {
         this.convertPrime(p);
         return this;
 
     }
     
+    /*
+        Changes the coefficient array of the given polynomial to the given array.
+    */
     public void defineByArray(int[] a){
         int length = a.length;
         this.coefficient = new int[length];
         for (int i = 0; i<length; i++)
         this.coefficient[i] = a[length-1-i];
-//        this.print();
         removeLeadingO();
     }
     
+    /*
+        If after some operations the leading coefficient has become 0 lower 
+        the degree to the next non zero coefficient.
+    */
     public void removeLeadingO(){
         degree = 0;
         for (int i = 0; i <this.coefficient.length; i++) {
             if (this.coefficient[this.coefficient.length-i-1] != 0) {;
                 degree = this.coefficient.length-i-1;
-//                 System.out.println("degree is:"+degree);
                 return;
             }
         }
     }
     
+    /*
+        Checks if the given polynomial is 1
+    */
     public boolean checkIfOne(){
         removeLeadingO();
         if(this.degree == 0 && coefficient[0] == 1){
@@ -351,7 +380,9 @@ public class NewPolynomial {
         }
         else return false;
     }
-    
+    /*
+        Checks if the given polynomial is 0.
+    */
     public boolean checkIfZero(){
         removeLeadingO();
         if(this.degree<0) return true;
@@ -360,7 +391,10 @@ public class NewPolynomial {
         }
         else return false;
     }
-
+    
+    /*
+        Returns the degree of the array
+    */
     public int getDegree() {
         return this.degree;
     }
@@ -375,11 +409,17 @@ public class NewPolynomial {
 //        newpoly.subtoThisCoef(newpoly.getDegree(), 1);
         return newpoly;
     }
-
+    
+    /*
+        Returns the coefficient array
+    */
     public int[] getCoef() {
         return this.coefficient;
     }
 
+    /*
+    Returns the chosen coefficient.
+    */
     public int getThisCoef(int k) {
         return this.coefficient[k];
     }
@@ -406,7 +446,9 @@ public class NewPolynomial {
         }
         return this;
     }
-
+    /*
+        Function which checks if 2 coefficients are equal.
+    */
     public boolean checkIfEqual (NewPolynomial p1, NewPolynomial p2){
         
         if(p1.getDegree()==p2.getDegree()){

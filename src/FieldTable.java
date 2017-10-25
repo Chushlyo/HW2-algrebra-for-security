@@ -1,6 +1,11 @@
 
 import java.util.ArrayList;
-
+/*
+     This class given an input field and irreducible polynomial
+     will creates a list with all the elements in that field mod the polynomial.
+     After that it adds and multiplies every element to that list to every
+     element in that list and creates 2 tables.
+*/
 public class FieldTable {
     NewField field;
     NewPolynomial poly;
@@ -15,39 +20,34 @@ public class FieldTable {
         additionTable();
         System.out.println("Multiplication table:");
         multiplicationTable();
-//        addAsList();
 
-    }
-    
+    }     
+    /**
+     * 
+     * @param field 
+     * @param poly
+     * @return All the elements in the field mod poly
+     */
     public ArrayList<NewPolynomial> moddedList(NewField field, NewPolynomial poly){
         ArrayList<NewPolynomial> list = new ArrayList<>();
         NewPolynomial r = new NewPolynomial("2");
          NewPolynomial q = new NewPolynomial("2");
         int i =0;
         LongDivision ld = new LongDivision(field.prime);
-        while(field.fieldPoly.size()>i && !(q.checkIfOne() && r.checkIfZero())){
-//            System.out.println();
-//            field.fieldPoly.get(i).print();
-            
+        while(field.fieldPoly.size()>i && !(q.checkIfOne() && r.checkIfZero())){            
             ld.divide(field.fieldPoly.get(i), poly);
             if (q.checkIfOne() && r.checkIfZero()) break;
             r=ld.rem;
-//            System.out.println("r is");
-//            r.print();
-//            System.out.println("quot is");
-//            q.print();
             q=ld.quot;
             if (q.checkIfOne() && r.checkIfZero()) break;
             list.add(ld.rem);
             i++;       
         }
-        
-//        for (i = 0; i < list.size();i++){
-//            list.get(i).print();
-//        }
         return list;   
     }
-
+    /*
+    Creates the addition table.
+    */
     void additionTable() {
         LongDivision ld = new LongDivision(field.prime);
                 ArrayList<NewPolynomial> l1 = modlist;
@@ -63,20 +63,20 @@ public class FieldTable {
         System.out.println();
         
         for(int i = 1;i< length; i++){
-//            modlist.get(i).print();
             l1.get(i).printWL();
             System.out.print("\t");
             for (int j =1; j < length; j++){
                 ld.divide(pa.sum(l1.get(i), l2.get(j)).primeVersion(field.prime), poly);
                 ld.rem.printWL();
                 System.out.print("\t");
-//                System.out.print("   |    ");
             }
             System.out.println();
         }
 
     }
-
+    /*
+        Creates the multiplication table
+    */
     void multiplicationTable() {
          LongDivision ld = new LongDivision(field.prime);
                 ArrayList<NewPolynomial> l1 = modlist;
@@ -92,14 +92,12 @@ public class FieldTable {
         System.out.println();
         
         for(int i = 1;i< length; i++){
-//            modlist.get(i).print();
             l1.get(i).printWL();
             System.out.print("\t");
             for (int j =1; j < length; j++){
                 ld.divide(pa.product(l1.get(i), l2.get(j)).primeVersion(field.prime), poly);
                 ld.rem.printWL();
                 System.out.print("\t");
-//                System.out.print("   |    ");
             }
             System.out.println();
         }

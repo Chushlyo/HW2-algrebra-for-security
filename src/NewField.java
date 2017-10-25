@@ -1,7 +1,10 @@
 
 import java.util.ArrayList;
 
-
+/*
+Generates a filed with the specified prime and exponent.
+Adds the field polynomials to a list.
+*/
 public class NewField {
     int prime;
     int exponent;
