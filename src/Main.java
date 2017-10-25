@@ -175,6 +175,14 @@ public class Main {
                 p1.print();
                 extendedEuclidean=new ExtendedEuclidean(prime);
                 extendedEuclidean.compute(p,p1);
+                //        System.out.println("GCD is ");
+                System.out.println();
+                extendedEuclidean.gcd.print();
+                
+                    System.out.println("second poly:X is");
+                    extendedEuclidean.y1.print();
+                    System.out.println("first poly:Y is");
+                    extendedEuclidean.x1.print();
                 break;
             case 7://two polynomials equal third one
                 System.out.println("Enter a prime number p");
@@ -233,18 +241,38 @@ public class Main {
                 System.out.println("Enter the exponent n.");
                 exponent = scanner.nextInt();
                 NewField pfield = new NewField(prime, exponent);
-                
-                System.out.println("Enter a prime number p");
-                prime = scanner.nextInt();
-                if (!primeCheck(prime)) {
-                    System.out.println("The number is not prime.");
+                pfield.generate();
+                System.out.println("Enter first polynomial.");
+                poly = scanner.next().toLowerCase();
+                p = new NewPolynomial(poly);
+                p.print();
+                p.convertPrime(prime);
+                if(!pfield.checkIfInField(p)){
+                    System.out.println("Element not in field.");
                     System.exit(0);
                 }
-                System.out.println("Enter a polynomial.");
-                poly = scanner.next();
-                p = new NewPolynomial(poly);
-                p.convertPrime(prime);
-                FieldTable table = new FieldTable(pfield,p);
+                p.print();
+                System.out.println("Enter second polynomial.");
+                poly1 = scanner.next().toLowerCase();
+                p1 = new NewPolynomial(poly1);
+                p1.print();
+                p1.convertPrime(prime);
+                if(!pfield.checkIfInField(p1)){
+                    System.out.println("Element not in field.");
+                    System.exit(0);
+                }
+                p1.print();
+                NewPolynomial p2 = new NewPolynomial("x^"+exponent);
+                FieldsArithmetic fa = new FieldsArithmetic(p,p1,p2,prime);
+                System.out.println("Sum is:");
+                fa.sum().print();
+                System.out.println("Product is:");
+                fa.product().print();
+                System.out.println("Quotient is:");
+                if(fa.quotient()!=null)
+                    fa.quotient().print();
+                else System.out.println("There is no inverse");
+                
                 break;
                 //two polynomials should be from the same field, check needs to be done
                 

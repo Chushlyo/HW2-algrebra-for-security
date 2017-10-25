@@ -60,23 +60,25 @@ public class NewField {
         exponent++;
     }
     
-        public ArrayList<NewPolynomial>  getPolys(){
-        return fieldPoly;
-        }
+    public ArrayList<NewPolynomial>  getPolys(){
+            return fieldPoly;
+    }
         
-        public void printField() {
-            for (int i = 0; i < fieldPoly.size(); i++) {
+    public void printField() {
+        for (int i = 0; i < fieldPoly.size(); i++) {
+            fieldPoly.get(i).print();
+        }
+    }
+    
+    public void printFieldIrreduc(int degree){
+        for (int i = 0; i < fieldPoly.size(); i++) {
+            if(fieldPoly.get(i).getDegree()==degree){
                 fieldPoly.get(i).print();
             }
-        }
-        public void printFieldIrreduc(int degree){
-            for (int i = 0; i < fieldPoly.size(); i++) {
-                if(fieldPoly.get(i).getDegree()==degree){
-                    fieldPoly.get(i).print();
-                }
 
-            }
         }
+    }
+        
         void print() {
 //        for (NewPolynomial p : fieldPoly) {
 //            for (int i = 0; i < p.getCoef().length; i++) {
@@ -127,6 +129,14 @@ public class NewField {
         }
     }
 
+    public boolean checkIfInField(NewPolynomial p){
+        for (int i = 0; i < fieldPoly.size(); i++) {
+            if(p.checkIfEqual(p,fieldPoly.get(i))){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
             

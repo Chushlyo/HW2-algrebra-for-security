@@ -1,12 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * @author Nikolay
- */
 public class NewPolynomial {
 
     private int[] coefficient;
@@ -15,6 +7,7 @@ public class NewPolynomial {
     public NewPolynomial(String poly) {
 
         this.coefficient = extractCoef(poly);
+        this.removeLeadingO();
 
     }
 
@@ -179,7 +172,7 @@ public class NewPolynomial {
 
                     }
                 }else{
-
+                    
                     coefficient = new int[2];
                     if(minus)    coefficient[1] = -firstCoef;
                     else coefficient[1] = firstCoef;
@@ -415,4 +408,17 @@ public class NewPolynomial {
         return this;
     }
 
+    public boolean checkIfEqual (NewPolynomial p1, NewPolynomial p2){
+        
+        if(p1.getDegree()==p2.getDegree()){
+            for(int i= 0; i <= p1.getDegree();i++){
+                if(p1.getThisCoef(i)!=p2.getThisCoef(i))
+                    return false;
+            }
+            return true;
+        }
+        
+        else
+            return false;
+    }
 }

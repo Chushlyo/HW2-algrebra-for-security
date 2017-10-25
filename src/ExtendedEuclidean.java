@@ -21,15 +21,15 @@ public class ExtendedEuclidean {
 //                b=old;
 //            }
         while (!b.checkIfZero()) {
-            System.out.println("Long Division is:");
-            a.print();
-            b.print();
+//            System.out.println("Long Division is:");
+//            a.print();
+//            b.print();
             longDivision.divide(a, b);
             quot = longDivision.quot;
             a = b;
             b=longDivision.rem;
-            System.out.println("b is ");
-            b.print();
+//            System.out.println("b is ");
+//            b.print();
             xPr=polynomialsArithmetic.difference(x1,polynomialsArithmetic.product(quot,x2).primeVersion(prime)).primeVersion(prime);
             xPr.removeLeadingO();
 //            if(xPr.getDegree()>0) {
@@ -59,19 +59,19 @@ public class ExtendedEuclidean {
             gcd=a;// quot?
         }
 
-        System.out.println("GCD is ");
-        gcd.print();
-        if (gcd==new NewPolynomial("1")){
-            System.out.println("second poly:X is");
-            x1.printWL();
-            System.out.println("first poly:Y is");
-            y1.printWL();
-        }else{
-            System.out.println("second poly:X is");
-            x1.printWL();
-            System.out.println("first poly:Y is");
-            y1.printWL();
-        }
+//        System.out.println("GCD is ");
+//        gcd.print();
+//        if (gcd==new NewPolynomial("1")){
+//            System.out.println("second poly:X is");
+//            x1.printWL();
+//            System.out.println("first poly:Y is");
+//            y1.printWL();
+//        }else{
+//            System.out.println("second poly:X is");
+//            x1.printWL();
+//            System.out.println("first poly:Y is");
+//            y1.printWL();
+//        }
 
 
      return gcd;
