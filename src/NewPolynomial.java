@@ -256,7 +256,7 @@ public class NewPolynomial {
             printer = (printer + coefficient[0]);
         }
         
-        System.out.println(printer);
+        System.out.println(printer+"\n");
     }
     
     /*
@@ -361,13 +361,28 @@ public class NewPolynomial {
         the degree to the next non zero coefficient.
     */
     public void removeLeadingO(){
+
         degree = 0;
         for (int i = 0; i <this.coefficient.length; i++) {
             if (this.coefficient[this.coefficient.length-i-1] != 0) {;
                 degree = this.coefficient.length-i-1;
+                removezero();
                 return;
             }
         }
+
+    }
+    public void removezero(){
+        int[] newCof;
+        boolean remove=false;
+        if(coefficient[coefficient.length-1]==0){
+            newCof=new int [degree+1];
+            for(int m=0; m<newCof.length; m++){
+                newCof[m]=coefficient[m];
+            }
+            this.coefficient=newCof;
+        }
+
     }
     
     /*

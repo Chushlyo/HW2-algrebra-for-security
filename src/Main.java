@@ -42,7 +42,7 @@ public class Main {
         integerMod = new IntegerMod();
         switch (userChoice) {
             case 1://integer mod
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -54,7 +54,7 @@ public class Main {
                 System.out.println(im.modReduction(prime,integer));
                 break;
             case 2://Polynomials with integer coefficients
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -62,13 +62,13 @@ public class Main {
                 }
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
-                p = new NewPolynomial(poly);                
-                p.print();
+                p = new NewPolynomial(poly);
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 break;
             case 3://Finite fields
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -82,7 +82,7 @@ public class Main {
                 System.out.println("\n The field consists of " + field1.fieldPoly.size() + " elements.");
                 break;
             case 4://arithmetic polynomials
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -91,14 +91,14 @@ public class Main {
                 System.out.println("Enter first polynomial.");
                 poly = scanner.next().toLowerCase();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
                 p1 = new NewPolynomial(poly1);
-                p1.print();
                 p1.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p1.print();
                 System.out.println("Enter a scalar");
                 int scalar = scanner.nextInt();
@@ -134,7 +134,7 @@ public class Main {
                 res.print();
                 break;
             case 5://long division
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -143,14 +143,14 @@ public class Main {
                 System.out.println("Enter first polynomial.");
                 poly = scanner.next().toLowerCase();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
                 p1 = new NewPolynomial(poly1);
-                p1.print();
                 p1.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p1.print();
                 longDivision=new LongDivision(prime);
                 longDivision.divide(p,p1);
@@ -160,7 +160,7 @@ public class Main {
                 longDivision.rem.print();
                 break;
             case 6://extended euclidean
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -169,14 +169,14 @@ public class Main {
                 System.out.println("Enter first polynomial.");
                 poly = scanner.next().toLowerCase();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
                 p1 = new NewPolynomial(poly1);
-                p1.print();
                 p1.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p1.print();
                 extendedEuclidean=new ExtendedEuclidean(prime);
                 extendedEuclidean.compute(p,p1);
@@ -189,7 +189,7 @@ public class Main {
                 extendedEuclidean.x1.print();
             break;
             case 7://two polynomials equal third one
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -198,26 +198,26 @@ public class Main {
                 System.out.println("Enter first polynomial.");
                 poly = scanner.next().toLowerCase();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
                 p1 = new NewPolynomial(poly1);
-                p1.print();
                 p1.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p1.print();
                 System.out.println("Enter third polynomial.");
                 poly2 = scanner.next().toLowerCase();
                 p3 = new NewPolynomial(poly2);
-                p3.print();
                 p3.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p3.print();
                 equalModulo=new EqualModulo(p,p1,p3,prime);
                 equalModulo.congruent();
                 break;
             case 8://addition multiplication table
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -230,13 +230,13 @@ public class Main {
                 System.out.println("Enter a polynomial.");
                 poly = scanner.next();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 FieldTable table = new FieldTable(sfield,p);
                 break;
             case 9:// arithmetic finite fields
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -249,22 +249,22 @@ public class Main {
                 System.out.println("Enter first polynomial.");
                 poly = scanner.next().toLowerCase();
                 p = new NewPolynomial(poly);
-                p.print();
                 p.convertPrime(prime);
                 if(!pfield.checkIfInField(p)){
                     System.out.println("Element not in field.");
                     System.exit(0);
                 }
+                System.out.println("The polynomial in mod p is:");
                 p.print();
                 System.out.println("Enter second polynomial.");
                 poly1 = scanner.next().toLowerCase();
                 p1 = new NewPolynomial(poly1);
-                p1.print();
                 p1.convertPrime(prime);
                 if(!pfield.checkIfInField(p1)){
                     System.out.println("Element not in field.");
                     System.exit(0);
                 }
+                System.out.println("The polynomial in mod p is:");
                 p1.print();
                 NewPolynomial p2 = new NewPolynomial("x^"+exponent);
                 FieldsArithmetic fa = new FieldsArithmetic(p,p1,p2,prime);
@@ -281,7 +281,7 @@ public class Main {
                 //two polynomials should be from the same field, check needs to be done
                 
             case 10: // irreducibility
-                System.out.println("Enter a prime number p");
+                System.out.println("Enter a prime number p.");
                 prime = scanner.nextInt();
                 if (!integerMod.primeCheck(prime)) {
                     System.out.println("The number is not prime.");
@@ -294,15 +294,34 @@ public class Main {
                     System.out.println("Polynomial should have a degree at least 1.");
                     System.exit(0);
                 }
-                p.printWL();
                 p.convertPrime(prime);
-                p.printWL();
-                irreducibility=new Irreducibility(p,prime);
-                irreducibility.checkIrreducibility();
+                System.out.println("The polynomial in mod p is:");
+                p.print();
+                irreducibility=new Irreducibility();
+                boolean result=irreducibility.checkIrreducibility(p,prime);
+                if(!result){
+                    System.out.println("It is not irreducible");// it is reducible
+                    printFieldIrreduc(p.getDegree(),p,prime);
+                }else{
+                    System.out.println("It is irreducible");
+                    p.print();
+                }
                 break;
 
         }
 
+    }
+    public void printFieldIrreduc(int degree,NewPolynomial poly,int modulus){
+        NewField field=new NewField(modulus,poly.getDegree()+1);
+        field.generate();
+        for (int i = 0; i < field.fieldPoly.size(); i++) {
+            //field.fieldPoly.get(i).print();
+            if(field.fieldPoly.get(i).getDegree()==degree && irreducibility.checkIrreducibility(field.fieldPoly.get(i),modulus)){
+                System.out.println("An irreducible polynomial from the same degree is:");
+                field.fieldPoly.get(i).print();
+                break;
+            }
+        }
     }
     public static void main(String[] args) {
         new Main().computation();

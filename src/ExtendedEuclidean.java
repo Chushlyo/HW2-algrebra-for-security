@@ -40,6 +40,7 @@ public class ExtendedEuclidean {
         }else{
             gcd=a;// quot?
         }
+        gcd.removeLeadingO();
      return gcd;
     }
 }
