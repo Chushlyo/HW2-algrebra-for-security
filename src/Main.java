@@ -20,7 +20,10 @@ public class Main {
     Irreducibility irreducibility;
     //Congruence
     EqualModulo equalModulo;
+    //Integer mod
     IntegerMod integerMod;
+    //Generete Irreducible polynomial
+    GenerateIrreducible generateIrreducible;
 
     void computation() {
         System.out.println("Choose one of the operations: \n " +
@@ -298,10 +301,11 @@ public class Main {
                 System.out.println("The polynomial in mod p is:");
                 p.print();
                 irreducibility=new Irreducibility();
+                generateIrreducible=new GenerateIrreducible();
                 boolean result=irreducibility.checkIrreducibility(p,prime);
                 if(!result){
                     System.out.println("It is not irreducible");// it is reducible
-                    printFieldIrreduc(p.getDegree(),p,prime);
+                    generateIrreducible.printFieldIrreduc(p.getDegree(),p,prime);
                 }else{
                     System.out.println("It is irreducible");
                     p.print();
@@ -311,18 +315,7 @@ public class Main {
         }
 
     }
-    public void printFieldIrreduc(int degree,NewPolynomial poly,int modulus){
-        NewField field=new NewField(modulus,poly.getDegree()+1);
-        field.generate();
-        for (int i = 0; i < field.fieldPoly.size(); i++) {
-            //field.fieldPoly.get(i).print();
-            if(field.fieldPoly.get(i).getDegree()==degree && irreducibility.checkIrreducibility(field.fieldPoly.get(i),modulus)){
-                System.out.println("An irreducible polynomial from the same degree is:");
-                field.fieldPoly.get(i).print();
-                break;
-            }
-        }
-    }
+
     public static void main(String[] args) {
         new Main().computation();
     }

@@ -38,7 +38,7 @@ public class ExtendedEuclidean {
         if (b.getThisCoef(0)!=0){
             gcd=new NewPolynomial("1");
         }else{
-            gcd=a;// quot?
+            gcd=a;
         }
         gcd.removeLeadingO();
      return gcd;
